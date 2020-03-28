@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: white;
+}
+
+#navtxt {
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  background-color: black;
+}
+
+#yprofile {
+  color: black;
+}
+
+#yprofile:hover {
+  color: white;
+}
+
+button[type=submit].btn{
+    border-radius: 20px;
+    background-color: #04c582;
+    color: #fff;
+}
+button[type=clear].btn{
+  border-radius: 20px;
+  background-color: #dc3545;
+  color: #fff;
+}
+button[type=set].btn{
+  border-radius: 20px;
+  background-color: blue;
+  color: #fff;
+}
+
+
+#toast-container > div {
+    opacity:1;
+}
+
+
+ .toast-bottom-right {
+    margin-bottom: auto;
+    margin-right: 5%;
+    }
