@@ -1,59 +1,34 @@
-<!--
-<div class="container">
-  <div class="row">
-    <div class="col s8 offset-2">
-      <div class="car-panel teal lighten-2">
-        <h4 class="center white-text">Upload</h4>
-      </div>
-      <form #imageForm=ngForm (ngSubmit)="OnSubmit(Title,Image)">
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="Title">Title</label>
-            <input type="text" #Title ngModel name="Title" id="Title" required>
-          </div>
-          <div class="input-field col s12">
-            <label for="Txt">Txt</label>
-            <textarea #Txt ngModel name="Txt" id="Txt"></textarea>
-          </div>
-        </div>
-        <img [src]="imageUrl"  style="width: 250px; height: 250px;">
-          <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
-          <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
-      </form>
-    </div>
-  </div>
-</div> -->
 
-<!--  a netcore'a xd do przerobienia  -->
-<div class="row" style="justify-content: center;">
-    <h1 style="justify-content: center; margin-left: 50%; margin-right: 50%;">Upload</h1>
-    <div class="col-md-4">
-        <form #imageForm=ngForm (ngSubmit)="OnSubmit(Title,Image)" class="mt-3">
-  
-  
-  
-            <div class="form-group">
-              <label for="Title" class="control-label">Title</label>
-              <input type="text" #Title ngModel name="Title" id="Title" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="Txt" class="control-label">Txt</label>
-                <textarea class="form-control" #Txt ngModel name="Txt" id="Txt"></textarea>
-            </div>
-  
-            <label class="col-sm-2 col-form-label">Image</label>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                      <img [src]="imageUrl"  style="max-width: 600px;">
-                        <div class="custom-file">
-                            <input id="fileupl" type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
-                        </div>
-                    </div>
-                </div>
-  
-            <div class="form-group">
-              <button id="create" type="submit" class="btn btn-lg" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
-            </div>
-        </form>
+  <form [formGroup]="memeServie.addMeme" autocomplete="off" (submit)="OnSubmit()" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+    <div class="form-group required">
+      <label>Category</label><br>
+      <select formControlName="categoryId" class="form-control">
+          <option *ngFor="let item of categories" [ngValue]="item.categoryId">
+              {{item.categoryId}}. {{item.categoryName}}
+          </option>
+      </select>
+      <label class="text-danger" *ngIf="memeServie.addMeme.get('categoryId').touched && memeServie.addMeme.get('categoryId').errors?.required">Category required</label>
     </div>
-  </div>
+    <div class="form-group required">
+        <label>Title</label>
+        <input class="form-control" formControlName="title">
+        <label class="text-danger" *ngIf="memeServie.addMeme.get('title').touched && memeServie.addMeme.get('title').errors?.required">Title required</label>
+    </div>
+    <div class="form-group">
+      <label>Txt</label>
+      <textarea class="form-control" formControlName="txt"></textarea>
+    </div>
+    <div class="form-group required">
+      <label>Image</label>
+      <input type="file" formControlName="image" class="form-control-file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+      <label class="text-danger" *ngIf="memeServie.addMeme.get('image').touched && memeServie.addMeme.get('image').errors?.required">Image required</label>
+    </div>
+    <img [src]="imageUrl" class="display">
+        
+        
+    <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2" style="padding-top: 10px;">
+            <button type="submit" class="btn btn-lg btn-block" [disabled]="!memeServie.addMeme.valid">Upload</button>
+        </div>
+    </div>
+</form>

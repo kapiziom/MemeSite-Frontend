@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { HttpClient, HttpParams, HttpRequest, HttpEvent } from '@angular/common/http';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Subject, observable, Observable } from 'rxjs';
+import { takeUntil, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemeService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private fb: FormBuilder) { }
 
-  readonly BaseURI = 'https://localhost:44322/api';
+  readonly BaseURI = 'https://localhost:44312/api';
 
-  // uploadModel = this.fb.group({
-  //   Title :'',
-  //   Txt :'',
-  //   Image :  '',
-  //   CategoryId : ''
-  // });
+   addMeme = this.fb.group({
+     title :['',[Validators.required]],
+     txt :'',
+     image :  ['',[Validators.required]],
+     categoryId : ['',[Validators.required]],
+   });
 
-  upload(){
-    
+  upload(fileToUpload: File, imageBytes: string){
+    var body = {
+      title: this.addMeme.value.title,
+      txt: this.addMeme.value.txt,
+      categoryId: this.addMeme.value.categoryId,
+      fileName: fileToUpload.name,
+      fileByte: imageBytes,      
+    };
+    console.log(body);
+    return this.http.post(this.BaseURI+'/Meme', body);
   }
 
-  postFile(caption: string, fileToUpload: File) {
-    const endpoint = 'https://localhost:44322/api/Image';
-    const formData: FormData = new FormData();
-    formData.append('Image', fileToUpload, fileToUpload.name);
-    formData.append('ImageCaption', caption);
-    console.log(formData);
-    return this.http
-      .post(endpoint, formData);
-  }
 }

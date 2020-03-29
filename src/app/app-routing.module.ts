@@ -9,21 +9,24 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { LoginComponent } from './components/user/login/login.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuard } from './core/auth/auth.guard';
 
 
 const routes: Routes = [
+  {path: '' , redirectTo:'/main/1', pathMatch:'full' },
   {path: 'main/:id' , component: MainpageComponent },
   {path: 'unaccepted/:id' , component: UnacceptedComponent },
   {path: 'details/:id' , component: DetailsComponent },
-  {path: 'upload', component: UploadComponent },//authorize
-  {path: 'adminpanel', component: AdminPanelComponent },//authorize
+  {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
+  {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']} },
+  {path: 'profile', component: UserProfileComponent, canActivate:[AuthGuard] },
   {path: 'user', component: UserComponent,
   children: [
     {path: 'registration', component: RegistrationComponent },
     {path: 'login', component: LoginComponent}
   ]},
   {path: 'forbidden', component: ForbiddenComponent },
-  {path: '' , redirectTo:'/main/1', pathMatch:'prefix' },
 ];
 
 @NgModule({

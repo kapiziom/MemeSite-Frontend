@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { UserService } from './core/services/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +17,11 @@ import { UserComponent } from './components/user/user.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { ToastrModule } from 'ngx-toastr';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { MemeService } from './core/services/meme.service';
+import { CategoryService } from './core/services/category.service';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { LoginComponent } from './components/user/login/login.component';
     UserComponent,
     AdminPanelComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +44,22 @@ import { LoginComponent } from './components/user/login/login.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
     FormsModule
   ],
-  providers: [UserService],
+  providers: [
+    UserService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    MemeService,
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

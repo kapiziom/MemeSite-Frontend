@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow mb-3" >
     <div class="container" style="margin-left: 15%;">
-        <a href="/main/1" class="navbar-brand text-white">Meme Page</a>
+        <a href="/main/1" class="navbar-brand text-white">Meme Site</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,6 +20,9 @@
                   </li>
                   <li class="nav-item">
                     <a id="navtxt" class="nav-link text-white" href="/upload">UPLOAD</a>
+                  </li>
+                  <li class="nav-item">
+                    <a id="navtxt" class="nav-link text-white" href="/uploadNew">UPLOAD_NEW</a>
                   </li>
                   <li class="nav-item">
                     <a id="navtxt" routerLink="/adminpanel" class="nav-link text-white" *ngIf="service.CheckRoleStaff()=='Administrator'">Admin Panel</a>

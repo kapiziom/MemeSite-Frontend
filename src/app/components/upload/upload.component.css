@@ -1,0 +1,10 @@
+.form-group{
+    max-width: 600px;
+}
+
+img.display{
+    max-width: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
