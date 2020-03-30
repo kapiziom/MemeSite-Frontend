@@ -33,4 +33,12 @@ export class MemeService {
     return this.http.post(this.BaseURI+'/Meme', body);
   }
 
+  GetContent(){
+    return this.http.get(this.BaseURI+'/Meme');
+  }
+
+  getPagedContent(page : number){
+    return this.http.get(this.BaseURI+'/Meme/Page/'+page);
+  }
+
 }

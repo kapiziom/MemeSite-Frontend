@@ -11,11 +11,12 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 const routes: Routes = [
-  {path: '' , redirectTo:'/main/1', pathMatch:'full' },
   {path: 'main/:id' , component: MainpageComponent },
+  {path: '404' , component: NotFoundComponent },
   {path: 'unaccepted/:id' , component: UnacceptedComponent },
   {path: 'details/:id' , component: DetailsComponent },
   {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
@@ -27,6 +28,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent}
   ]},
   {path: 'forbidden', component: ForbiddenComponent },
+  {path: '' , redirectTo:'/main/1', pathMatch:'prefix' },
 ];
 
 @NgModule({

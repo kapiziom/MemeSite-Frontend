@@ -22,6 +22,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { MemeService } from './core/services/meme.service';
 import { CategoryService } from './core/services/category.service';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
     AdminPanelComponent,
     RegistrationComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
