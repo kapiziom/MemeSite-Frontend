@@ -16,9 +16,12 @@ export class UploadComponent implements OnInit {
 
   imageUrl : string = "assets/img/noimg.jpg";
   fileToUpload : File = null;
-  imageByte = null;
+  imageByte : string | ArrayBuffer;
+  imgByteHead : string;
   categories : any;
   selectedCategory : any;
+
+  src: string;
  
   constructor(public memeServie : MemeService, private categoryService : CategoryService, private toastr : ToastrService) { }
  
@@ -32,15 +35,16 @@ export class UploadComponent implements OnInit {
     var reader = new FileReader();
     reader.onload = (event:any) => {
       this.imageUrl = event.target.result;
-      this.imageByte = reader.result;
-      //console.log(this.imageByte);
+      this.src = <string>reader.result;
+      const img = this.src.split(',');
+      this.imageByte = img[1];
+      this.imgByteHead = img[0];
     }
     reader.readAsDataURL(this.fileToUpload);
-    //console.log(this.fileToUpload);
   }
 
   OnSubmit(){
-     this.memeServie.upload(this.fileToUpload, this.imageByte).subscribe(
+     this.memeServie.upload(this.fileToUpload, this.imgByteHead, this.imageByte).subscribe(
        (res:any) => {
            this.memeServie.addMeme.reset();
            this.imageUrl = "assets/img/noimg.jpg"

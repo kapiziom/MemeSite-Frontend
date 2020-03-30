@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subject, observable, Observable } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
@@ -20,12 +20,13 @@ export class MemeService {
      categoryId : ['',[Validators.required]],
    });
 
-  upload(fileToUpload: File, imageBytes: string){
+  upload(fileToUpload: File, imgByteHead: string, imageBytes: string | ArrayBuffer){
     var body = {
       title: this.addMeme.value.title,
       txt: this.addMeme.value.txt,
       categoryId: this.addMeme.value.categoryId,
       fileName: fileToUpload.name,
+      byteHead: imgByteHead,
       fileByte: imageBytes,      
     };
     console.log(body);
