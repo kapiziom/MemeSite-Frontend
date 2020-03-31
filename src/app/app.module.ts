@@ -23,6 +23,9 @@ import { MemeService } from './core/services/meme.service';
 import { CategoryService } from './core/services/category.service';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ByCategoryComponent } from './components/by-category/by-category.component';
+import { CheckUserComponent } from './components/check-user/check-user.component';
+import { VoteService } from './core/services/vote.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     RegistrationComponent,
     LoginComponent,
     UserProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ByCategoryComponent,
+    CheckUserComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
       multi: true
     },
     MemeService,
-    CategoryService
+    CategoryService,
+    VoteService
   ],
   bootstrap: [AppComponent]
 })

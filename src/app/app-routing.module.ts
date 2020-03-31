@@ -12,16 +12,20 @@ import { UploadComponent } from './components/upload/upload.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ByCategoryComponent } from './components/by-category/by-category.component';
+import { CheckUserComponent } from './components/check-user/check-user.component';
 
 
 const routes: Routes = [
   {path: 'main/:id' , component: MainpageComponent },
+  {path: 'category/:name/:id' , component: ByCategoryComponent },
   {path: '404' , component: NotFoundComponent },
   {path: 'unaccepted/:id' , component: UnacceptedComponent },
   {path: 'details/:id' , component: DetailsComponent },
   {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
   {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']} },
   {path: 'profile', component: UserProfileComponent, canActivate:[AuthGuard] },
+  {path: 'checkuser/:username' , component: CheckUserComponent },
   {path: 'user', component: UserComponent,
   children: [
     {path: 'registration', component: RegistrationComponent },

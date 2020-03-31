@@ -21,9 +21,9 @@ body{
 }
 
 button[type=submit].btn{
-    border-radius: 20px;
-    background-color: #04c582;
-    color: #fff;
+  border-radius: 20px;
+  background-color: #04c582;
+  color: #fff;
 }
 button[type=clear].btn{
   border-radius: 20px;
@@ -38,28 +38,28 @@ button[type=set].btn{
 
 
 #toast-container > div {
-    opacity:1;
+  opacity:1;
 }
 
 
- .toast-bottom-right {
-    margin-bottom: auto;
-    margin-right: 5%;
-    }
+.toast-bottom-right {
+  margin-bottom: auto;
+  margin-right: 5%;
+}
 
 div.form-group label:not(.text-danger){
-    color: #545d6a;
-    font-weight: 700;
-  }
+  color: #545d6a;
+  font-weight: 700;
+}
 
 div.form-group.required>label:first-child:after{
-    content:'*';
-    color: #fff;
-    padding-left: 5px;
-  }
+  content:'*';
+  color: #fff;
+  padding-left: 5px;
+}
 
-  form{
-    margin: 0px 16px;
+form{
+  margin: 0px 16px;
 }
 
 div.form-group input.invalid{
@@ -68,4 +68,23 @@ div.form-group input.invalid{
 div.form-group label:first-child{
   text-transform: uppercase;
   font-size: 0.9rem;
+}
+
+div.paginator {
+  background-color: grey;
+  margin-bottom: 30px;
+  justify-content: center;
+  text-align: center;
+  max-height: 50px;
+}
+
+img.responsive {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+button.pageChange:hover {
+  background-color: black;
+  color: white;
 }

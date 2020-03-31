@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MemeService } from 'src/app/core/services/meme.service';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { VoteService } from 'src/app/core/services/vote.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -24,7 +26,9 @@ export class MainpageComponent implements OnInit {
   constructor(public userService: UserService,
               private memeService: MemeService,
               private router: Router,
-              private categoryService: CategoryService) { 
+              private categoryService: CategoryService,
+              private voteService: VoteService,
+              private toastr: ToastrService) { 
     this.config = {
       currentPage: 1,
       itemsPerPage: 1,
@@ -45,7 +49,6 @@ export class MainpageComponent implements OnInit {
           this.router.navigateByUrl('/404');
         }
         this.memeList = res['memeList'];
-        console.log(this.pagecount);
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
         console.log(this.memeList);
       },
@@ -66,15 +69,76 @@ export class MainpageComponent implements OnInit {
     );
   }
 
-  onPlus(number: number){
-    console.log(number);
-    console.log('plus works');
-    console.log(this.thenum);
+  pageChange(newPage){
+    if(newPage == 'first'){
+      this.router.navigateByUrl('/main/'+'1')
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    if(newPage == 'prev'){
+      var numberValue = Number(this.thenum);
+      numberValue -= 1;
+      this.router.navigateByUrl('/main/'+numberValue)
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    if(newPage == 'next'){
+      var numberValue = Number(this.thenum);
+      numberValue += 1;
+      this.router.navigateByUrl('/main/'+numberValue)
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    if(newPage == 'last'){
+      this.router.navigateByUrl('/main/'+this.pagecount)
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    
+    
   }
 
-  onMinus(number: number){
-    console.log(number);
-    console.log('minus works');
+  onPlus(memeId: number, i: number){
+    console.log(i);
+    console.log(this.memeList[0]);
+    this.voteService.send(1, memeId).subscribe(
+      (res:any) => {
+          this.toastr.success('voted successful', 'success');
+          this.afterVote(memeId, i)
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('you have been voted for this option', 'not success');
+      }
+    );
+  }
+
+  onMinus(memeId: number, i: number){
+    this.voteService.send(-1, memeId).subscribe(
+      (res:any) => {
+          this.toastr.success('voted successful', 'success');
+          this.afterVote(memeId, i)
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('you have been voted for this option', 'not success');
+      }
+    );
+  }
+
+  afterVote(memeId : number, i: number){
+    this.memeService.getMemeRate(memeId).subscribe(
+      (res : any) =>{
+        this.memeList[i]['rate'] = res;
+      },
+      err =>{
+        console.log(err);
+      },
+    );
   }
 
   addFavourite(number: number){

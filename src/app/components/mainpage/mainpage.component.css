@@ -68,12 +68,20 @@
   background-color: darkgreen;
 }
 
+#plus:disabled {
+  background-color: rgb(0, 51, 0);
+}
+
 #minus:hover {
   background-color: darkred;
 }
 
 #minus:active {
   background-color: darkred;
+}
+
+#minus:disabled {
+  background-color: rgb(71, 0, 0);
 }
 
 #minus {
