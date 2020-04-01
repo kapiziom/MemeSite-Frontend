@@ -1,0 +1,7 @@
+<div class="paginator">
+    <button class="btn btn-lg pageChange material-icons" (click)="pageChange('first')" [disabled]="pageNumber == '1'">first_page</button>
+    <button class="btn btn-lg pageChange material-icons" (click)="pageChange('prev')" [disabled]="pageNumber == '1'">navigate_before</button>
+    {{pageNumber}}/{{pageCount}}
+    <button class="btn btn-lg pageChange material-icons" (click)="pageChange('next')" [disabled]="pageNumber == pageCount">navigate_next</button>
+    <button class="btn btn-lg pageChange material-icons" (click)="pageChange('last')" [disabled]="pageNumber == pageCount">last_page</button>
+</div>

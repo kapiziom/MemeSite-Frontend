@@ -29,13 +29,7 @@
                 </div>
             </div>
             
-            <div class="paginator">
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('first')" [disabled]="PageNumber == '1'">first_page</button>
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('prev')" [disabled]="PageNumber == '1'">navigate_before</button>
-                {{PageNumber}}/{{pagecount}}
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('next')" [disabled]="PageNumber == pagecount">navigate_next</button>
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('last')" [disabled]="PageNumber == pagecount">last_page</button>
-            </div>
+            <app-paginator [pageNumber]="PageNumber" [pageCount]="pagecount"></app-paginator>
 
         </div>
         <div class="col-md-3 d-none d-lg-block d-xl-block" style="background-color: grey;">

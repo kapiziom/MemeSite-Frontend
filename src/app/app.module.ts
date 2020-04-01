@@ -27,6 +27,7 @@ import { ByCategoryComponent } from './components/by-category/by-category.compon
 import { CheckUserComponent } from './components/check-user/check-user.component';
 import { VoteService } from './core/services/vote.service';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
     NotFoundComponent,
     ByCategoryComponent,
     CheckUserComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

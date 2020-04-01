@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { MemeService } from 'src/app/core/services/meme.service';
-import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/core/services/category.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VoteService } from 'src/app/core/services/vote.service';
+import { max } from 'rxjs/operators';
 
 @Component({
   selector: 'app-unaccepted',
@@ -23,12 +23,12 @@ export class UnacceptedComponent implements OnInit {
   constructor(public userService: UserService,
               private memeService: MemeService,
               private router: Router,
-              private categoryService: CategoryService,
               private voteService: VoteService,
-              private toastr: ToastrService) { 
+              private toastr: ToastrService,
+              private activatedRoute: ActivatedRoute) { 
     this.config = {
       currentPage: 1,
-      itemsPerPage: 1,
+      itemsPerPage: 2,
       totalItems:0
       };
   }
@@ -36,6 +36,7 @@ export class UnacceptedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getContent(this.PageNumber);
+    
   }
 
   getContent(pageNumber){
@@ -53,39 +54,6 @@ export class UnacceptedComponent implements OnInit {
         console.log(err);
       },
     );
-  }
-
-  pageChange(newPage){
-    if(newPage == 'first'){
-      this.router.navigateByUrl('/unaccepted/'+'1')
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'prev'){
-      var numberValue = Number(this.PageNumber);
-      numberValue -= 1;
-      this.router.navigateByUrl('/unaccepted/'+numberValue)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'next'){
-      var numberValue = Number(this.PageNumber);
-      numberValue += 1;
-      this.router.navigateByUrl('/unaccepted/'+numberValue)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'last'){
-      this.router.navigateByUrl('/unaccepted/'+this.pagecount)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    
-    
   }
 
   onPlus(memeId: number, i: number){

@@ -55,39 +55,6 @@ export class MainpageComponent implements OnInit {
     );
   }
 
-  pageChange(newPage){
-    if(newPage == 'first'){
-      this.router.navigateByUrl('/main/'+'1')
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'prev'){
-      var numberValue = Number(this.PageNumber);
-      numberValue -= 1;
-      this.router.navigateByUrl('/main/'+numberValue)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'next'){
-      var numberValue = Number(this.PageNumber);
-      numberValue += 1;
-      this.router.navigateByUrl('/main/'+numberValue)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'last'){
-      this.router.navigateByUrl('/main/'+this.pagecount)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    
-    
-  }
-
   onPlus(memeId: number, i: number){
     console.log(i);
     console.log(this.memeList[0]);

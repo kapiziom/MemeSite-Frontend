@@ -44,7 +44,6 @@ export class ByCategoryComponent implements OnInit {
     this.src = this.router.url;
     const route = this.src.split('/');
     this.category = route[2];
-    console.log(this.category);
   }
 
   getContent(pageNumber){
@@ -56,45 +55,11 @@ export class ByCategoryComponent implements OnInit {
         }
         this.memeList = res['memeList'];
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
-        console.log(this.memeList);
       },
       err =>{
         console.log(err);
       },
     );
-  }
-
-  pageChange(newPage){
-    if(newPage == 'first'){
-      this.router.navigateByUrl('/category/'+this.category+'/1')
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'prev'){
-      var numberValue = Number(this.PageNumber);
-      numberValue -= 1;
-      this.router.navigateByUrl('/category/'+this.category+'/'+numberValue)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'next'){
-      var numberValue = Number(this.PageNumber);
-      numberValue += 1;
-      this.router.navigateByUrl('/category/'+this.category+'/'+numberValue)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    if(newPage == 'last'){
-      this.router.navigateByUrl('/category/'+this.category+'/'+this.pagecount)
-        .then(() => {
-          window.location.reload();
-        });
-    }
-    
-    
   }
 
   onPlus(memeId: number, i: number){
