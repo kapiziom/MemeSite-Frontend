@@ -15,13 +15,11 @@ import { ToastrService } from 'ngx-toastr';
 export class MainpageComponent implements OnInit {
 
   config: any;
-  collection = [];
   memeList = new Array<any>();
   pagecount;
   categories;
 
-  thenum = this.router.url.match(/\d+/)[0];
-  num = +this.thenum;
+  PageNumber = this.router.url.match(/\d+/)[0];
 
   constructor(public userService: UserService,
               private memeService: MemeService,
@@ -37,31 +35,19 @@ export class MainpageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getContent(this.thenum);
-    this.GetCategories();
+    this.getContent(this.PageNumber);
   }
 
   getContent(pageNumber){
-    this.memeService.getPagedContent(pageNumber).subscribe(
+    this.memeService.getPagedContent(pageNumber, this.config.itemsPerPage).subscribe(
       (res : any) =>{
         this.pagecount = res['pageCount'];
-        if(this.thenum > this.pagecount){
+        if(this.PageNumber > this.pagecount){
           this.router.navigateByUrl('/404');
         }
         this.memeList = res['memeList'];
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
         console.log(this.memeList);
-      },
-      err =>{
-        console.log(err);
-      },
-    );
-  }
-
-  GetCategories(){
-    this.categoryService.getCategories().subscribe(
-      (res : any) =>{
-        this.categories = res;
       },
       err =>{
         console.log(err);
@@ -77,7 +63,7 @@ export class MainpageComponent implements OnInit {
         });
     }
     if(newPage == 'prev'){
-      var numberValue = Number(this.thenum);
+      var numberValue = Number(this.PageNumber);
       numberValue -= 1;
       this.router.navigateByUrl('/main/'+numberValue)
         .then(() => {
@@ -85,7 +71,7 @@ export class MainpageComponent implements OnInit {
         });
     }
     if(newPage == 'next'){
-      var numberValue = Number(this.thenum);
+      var numberValue = Number(this.PageNumber);
       numberValue += 1;
       this.router.navigateByUrl('/main/'+numberValue)
         .then(() => {

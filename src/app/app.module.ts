@@ -26,6 +26,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ByCategoryComponent } from './components/by-category/by-category.component';
 import { CheckUserComponent } from './components/check-user/check-user.component';
 import { VoteService } from './core/services/vote.service';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { VoteService } from './core/services/vote.service';
     UserProfileComponent,
     NotFoundComponent,
     ByCategoryComponent,
-    CheckUserComponent
+    CheckUserComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

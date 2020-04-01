@@ -1,10 +1,7 @@
 <div class="container content">
     <div class="row">
-        <div class="col-md-2" style="position: relative;">
-            <h2 style="text-align: center;">Categories</h2>
-            <span *ngFor="let item of categories">
-                <a id="navtxt" class="nav-link" href="/category/{{item.categoryName}}/1">{{item.categoryName}}</a>
-            </span>
+        <div class="col-md-2">
+            <app-categories></app-categories>
         </div>
         <div class="col-md-7">
             <div id="content" *ngFor="let item of memeList; let i = index">
@@ -33,11 +30,11 @@
             </div>
             
             <div class="paginator">
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('first')" [disabled]="thenum == '1'">first_page</button>
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('prev')" [disabled]="thenum == '1'">navigate_before</button>
-                {{thenum}}/{{pagecount}}
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('next')" [disabled]="thenum == pagecount">navigate_next</button>
-                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('last')" [disabled]="thenum == pagecount">last_page</button>
+                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('first')" [disabled]="PageNumber == '1'">first_page</button>
+                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('prev')" [disabled]="PageNumber == '1'">navigate_before</button>
+                {{PageNumber}}/{{pagecount}}
+                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('next')" [disabled]="PageNumber == pagecount">navigate_next</button>
+                <button class="btn btn-lg pageChange material-icons" (click)="pageChange('last')" [disabled]="PageNumber == pagecount">last_page</button>
             </div>
 
         </div>

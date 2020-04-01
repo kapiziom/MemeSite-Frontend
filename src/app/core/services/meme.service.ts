@@ -33,15 +33,23 @@ export class MemeService {
     return this.http.post(this.BaseURI+'/Meme', body);
   }
 
-  GetContent(){
-    return this.http.get(this.BaseURI+'/Meme');
+  GetMemeDetail(memeId: number){
+    return this.http.get(this.BaseURI+'/Meme/'+memeId);
   }
 
-  getPagedContent(page : number){
-    return this.http.get(this.BaseURI+'/Meme/Page/'+page);
+  getPagedContent(page: number, items: number){
+    return this.http.get(this.BaseURI+'/Meme/'+page+'/'+items);
   }
 
-  getMemeRate(memeId:number){
+  getCategoryPagedContent(category: string, page: number, items: number){
+    return this.http.get(this.BaseURI+'/Meme/'+category+'/'+page+'/'+items);
+  }
+
+  getUnacceptedContent(page: number, items: number){
+    return this.http.get(this.BaseURI+'/Meme/unAccepted/'+page+'/'+items);
+  }
+
+  getMemeRate(memeId: number){
     return this.http.get(this.BaseURI+'/Meme/GetRate/'+memeId);
   }
 

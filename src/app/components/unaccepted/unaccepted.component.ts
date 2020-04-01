@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/core/services/user.service';
+import { MemeService } from 'src/app/core/services/meme.service';
+import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/core/services/category.service';
+import { ToastrService } from 'ngx-toastr';
+import { VoteService } from 'src/app/core/services/vote.service';
 
 @Component({
   selector: 'app-unaccepted',
@@ -7,9 +13,124 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnacceptedComponent implements OnInit {
 
-  constructor() { }
+  config: any;
+  memeList = new Array<any>();
+  pagecount;
+  categories;
+
+  PageNumber = this.router.url.match(/\d+/)[0];
+
+  constructor(public userService: UserService,
+              private memeService: MemeService,
+              private router: Router,
+              private categoryService: CategoryService,
+              private voteService: VoteService,
+              private toastr: ToastrService) { 
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 1,
+      totalItems:0
+      };
+  }
+
 
   ngOnInit(): void {
+    this.getContent(this.PageNumber);
   }
+
+  getContent(pageNumber){
+    this.memeService.getUnacceptedContent(pageNumber, this.config.itemsPerPage).subscribe(
+      (res : any) =>{
+        this.pagecount = res['pageCount'];
+        if(this.PageNumber > this.pagecount){
+          this.router.navigateByUrl('/404');
+        }
+        this.memeList = res['memeList'];
+        this.config.totalItems = this.pagecount*this.config.itemsPerPage;
+        console.log(this.memeList);
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
+
+  pageChange(newPage){
+    if(newPage == 'first'){
+      this.router.navigateByUrl('/unaccepted/'+'1')
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    if(newPage == 'prev'){
+      var numberValue = Number(this.PageNumber);
+      numberValue -= 1;
+      this.router.navigateByUrl('/unaccepted/'+numberValue)
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    if(newPage == 'next'){
+      var numberValue = Number(this.PageNumber);
+      numberValue += 1;
+      this.router.navigateByUrl('/unaccepted/'+numberValue)
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    if(newPage == 'last'){
+      this.router.navigateByUrl('/unaccepted/'+this.pagecount)
+        .then(() => {
+          window.location.reload();
+        });
+    }
+    
+    
+  }
+
+  onPlus(memeId: number, i: number){
+    console.log(i);
+    console.log(this.memeList[0]);
+    this.voteService.send(1, memeId).subscribe(
+      (res:any) => {
+          this.toastr.success('voted successful', 'success');
+          this.afterVote(memeId, i)
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('you have been voted for this option', 'not success');
+      }
+    );
+  }
+
+  onMinus(memeId: number, i: number){
+    this.voteService.send(-1, memeId).subscribe(
+      (res:any) => {
+          this.toastr.success('voted successful', 'success');
+          this.afterVote(memeId, i)
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('you have been voted for this option', 'not success');
+      }
+    );
+  }
+
+  afterVote(memeId : number, i: number){
+    this.memeService.getMemeRate(memeId).subscribe(
+      (res : any) =>{
+        this.memeList[i]['rate'] = res;
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
+
+  addFavourite(number: number){
+    console.log(number);
+    console.log('addfavourite works');
+  }
+
 
 }
