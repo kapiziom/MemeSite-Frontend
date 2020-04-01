@@ -5,6 +5,7 @@ import { VoteService } from 'src/app/core/services/vote.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
+import { CommentService } from 'src/app/core/services/comment.service';
 
 @Component({
   selector: 'app-details',
@@ -17,16 +18,20 @@ export class DetailsComponent implements OnInit {
   MemeID = +this.thenum;
   memeDetails;
   categories;
+  comments;
+  commentValue: string;
 
   constructor(private memeService: MemeService,
     private categoryService: CategoryService,
     private voteService: VoteService,
     private router: Router,
     private toastr: ToastrService,
-    public userService: UserService) { }
+    public userService: UserService,
+    public commentService: CommentService) { }
 
   ngOnInit(): void {
     this.getMeme(this.MemeID);
+    this.getComments(this.MemeID);
   }
 
   getMeme(MemeID){
@@ -37,6 +42,30 @@ export class DetailsComponent implements OnInit {
       err =>{
         console.log(err);
       },
+    );
+  }
+
+  getComments(meme_id){
+    this.commentService.getComments(meme_id).subscribe(
+      (res : any) =>{
+        this.comments = res;
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
+
+  OnSubmit(){
+    this.commentService.postComment(this.MemeID).subscribe(
+      (res:any) => {
+        this.commentService.addComment.reset();
+        this.toastr.success('New comment added', 'success');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('New comment didnt add', 'not success');
+      }
     );
   }
 

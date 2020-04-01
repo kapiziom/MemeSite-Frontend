@@ -28,6 +28,7 @@ import { CheckUserComponent } from './components/check-user/check-user.component
 import { VoteService } from './core/services/vote.service';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { CommentService } from './core/services/comment.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     },
     MemeService,
     CategoryService,
-    VoteService
+    VoteService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

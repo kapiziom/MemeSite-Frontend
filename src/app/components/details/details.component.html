@@ -1,4 +1,4 @@
-<div class="container content">
+<div class="container details">
     <div class="row">
         <div class="col-md-2">
             <app-categories></app-categories>
@@ -14,7 +14,7 @@
                     </div>
                 </div>
                     <h2 style="color: black;" >{{memeDetails?.title}}</h2>
-                    <div >
+                    <div>
                         <img class="responsive" *ngIf="memeDetails?.byteHead != null" src="{{memeDetails.byteHead}},{{memeDetails.byteImg}}">
                     </div>
                 
@@ -29,7 +29,41 @@
             </div>
 
             <div class="comments">
+                <div *ngIf="!userService.IsLoggedIn()">
+                    <a href="user/login">Sign in to see comments</a>
+                </div>
+                <div *ngIf="userService.IsLoggedIn()">
+                    <form id="addcomment" class="container" [formGroup]="commentService.addComment" autocomplete="off" (submit)="OnSubmit()">
+                        <div class="row" >
+                            <div class="form-group required col-md-12">
+                                <label>Add Comment</label>
+                                <textarea id="addcommenttxt" class="form-control" formControlName="txt"></textarea>
+                                <label class="text-danger" *ngIf="commentService.addComment.get('txt').touched && commentService.addComment.get('txt').errors?.required">txt required</label>
+                            </div>
+                        </div> 
+                        <button id="addbutton" type="submit" class="btn btn-lg" [disabled]="!commentService.addComment.valid">Add</button>  
+                    </form>
 
+                    <div>
+                        <label class="commentList">COMMENTS:</label>
+                        <div *ngFor="let item of comments; let i = index">
+                            <div style="display: inline;">
+                                <a *ngIf="item.userName != 'admin'" id="ref" href="checkuser/{{item.userName}}">{{item.userName}}</a>
+                                <p *ngIf="item.userName == 'admin'" style="display: inline-block;">{{item.userName}}</p>
+                                <p style="display: inline-block; padding-left: 5px;"> - {{item.creationDate}}</p>
+                                <p *ngIf="item.editDate" style="display: inline-block; padding-left: 5px;"> - Last edit: {{item.editDate}}</p>
+                                <div *ngIf="userService.IsLoggedIn()" style="float: right;">
+                                    <!--SUBMIT FOR EDIT HERE-->
+                                </div>
+                            </div>
+                            <div>
+                                <p class="comment-text">{{item.txt}}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>

@@ -20,6 +20,10 @@ body{
   color: white;
 }
 
+.content {
+  margin-bottom: 150px;
+}
+
 button[type=submit].btn{
   border-radius: 20px;
   background-color: #04c582;
@@ -80,7 +84,7 @@ div.paginator {
 
 img.responsive {
   width: 100%;
-  max-width: 600px;
+  max-width: 635px;
   height: auto;
 }
 
@@ -101,7 +105,8 @@ button.pageChange:hover {
   color: blue;
 }
 
-#content {
+.content {
+  margin-bottom: 150px;
   margin-top: 30px;
   border-bottom: 2px solid grey;
 }
