@@ -18,5 +18,9 @@ export class VoteService {
     };
     return this.http.post(this.BaseURI+'/Vote/SendVote', body);
   }
+
+  getMemeRate(memeId: number){
+    return this.http.get(this.BaseURI+'/Vote/GetMemeRate/'+memeId);
+  }
   
 }

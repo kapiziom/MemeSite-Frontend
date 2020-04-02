@@ -96,7 +96,7 @@ export class DetailsComponent implements OnInit {
   }
 
   afterVote(memeId : number){
-    this.memeService.getMemeRate(memeId).subscribe(
+    this.voteService.getMemeRate(memeId).subscribe(
       (res : any) =>{
         this.memeDetails['rate'] = res;
       },

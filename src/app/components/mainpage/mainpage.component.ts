@@ -56,8 +56,6 @@ export class MainpageComponent implements OnInit {
   }
 
   onPlus(memeId: number, i: number){
-    console.log(i);
-    console.log(this.memeList[0]);
     this.voteService.send(1, memeId).subscribe(
       (res:any) => {
           this.toastr.success('voted successful', 'success');
@@ -84,7 +82,7 @@ export class MainpageComponent implements OnInit {
   }
 
   afterVote(memeId : number, i: number){
-    this.memeService.getMemeRate(memeId).subscribe(
+    this.voteService.getMemeRate(memeId).subscribe(
       (res : any) =>{
         this.memeList[i]['rate'] = res;
       },

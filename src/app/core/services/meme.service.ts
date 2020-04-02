@@ -49,8 +49,6 @@ export class MemeService {
     return this.http.get(this.BaseURI+'/Meme/unAccepted/'+page+'/'+items);
   }
 
-  getMemeRate(memeId: number){
-    return this.http.get(this.BaseURI+'/Meme/GetRate/'+memeId);
-  }
+
 
 }
