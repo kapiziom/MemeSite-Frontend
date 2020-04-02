@@ -1,8 +1,10 @@
 <div class="container details">
     <div class="row">
+
         <div class="col-md-2">
             <app-categories></app-categories>
         </div>
+
         <div class="col-md-7">
             <div id="content">
                 <div id="test" style="display: inline;">
@@ -23,8 +25,8 @@
                         <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a> </p>
                 </div>
                 <div id="vote" *ngIf="userService.IsLoggedIn()">
-                    <button id="plus" class="btn btn-lg" (click)="onPlus(memeDetails.memeId)">PLUS</button>
-                    <button id="minus" type="submit" class="btn btn-lg" (click)="onMinus(memeDetails.memeId)">MINUS</button>
+                    <button id="plus" [disabled]="memeDetails?.voteValue == 1" class="btn btn-lg" (click)="OnVote(memeDetails.memeId, memeDetails.isVoted, 1)">PLUS</button>
+                    <button id="minus" [disabled]="memeDetails?.voteValue == -1" type="submit" class="btn btn-lg" (click)="OnVote(memeDetails.memeId, memeDetails.isVoted, -1)">MINUS</button>
                 </div>
             </div>
 
@@ -53,10 +55,10 @@
                                     <p style="display: inline;" *ngIf="item.userName == 'admin'">{{item.userName}}</p>
                                     <p style="display: inline;"> - {{item.creationDate}}</p>
                                     <p *ngIf="item.editDate" style="display: inline;"> - Last edit: {{item.editDate}}</p>
-                                    <div style="float: right">
-                                        
-                                        
-                                    </div>
+                                    
+                                    <p class="comment-other" (click)="OnReport()">Report</p>
+                                    <p style="float: right; margin-right: 10px;"> - </p>
+                                    <p class="comment-other" (click)="OnReply()">Reply</p>
                                     
                                 </div>
                                 <div>

@@ -69,33 +69,47 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-  onPlus(memeId: number){
-    this.voteService.send(1, memeId).subscribe(
-      (res:any) => {
-          this.toastr.success('voted successful', 'success');
-          this.afterVote(memeId)
-      },
-      err => {
-        console.log(err);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
+  OnReply(){
+
   }
 
-  onMinus(memeId: number){
-    this.voteService.send(-1, memeId).subscribe(
-      (res:any) => {
-          this.toastr.success('voted successful', 'success');
-          this.afterVote(memeId)
-      },
-      err => {
-        console.log(err);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
+  OnReport(){
+
   }
 
-  afterVote(memeId : number){
+  OnVote(memeId: number, isVoted: boolean, voteValue: number){
+    if(isVoted === true){
+      this.voteService.ChangeVote(voteValue, memeId).subscribe(
+        (res:any) => {
+          this.refreshRate(memeId);
+          this.memeDetails['voteValue'] = voteValue;
+          this.toastr.success('voted successful', 'success');
+        },
+        err => {
+          console.log(err);
+          this.refreshRate(memeId);
+          this.toastr.error('you have been voted for this option', 'not success');
+        }
+      );
+    }
+    else {
+      this.voteService.SendVote(voteValue, memeId).subscribe(
+        (res:any) => {
+          this.refreshRate(memeId);
+          this.memeDetails['voteValue'] = voteValue;
+          this.toastr.success('voted successful', 'success');
+        },
+        err => {
+          console.log(err);
+          this.refreshRate(memeId);
+          this.toastr.error('something went wrong', 'not success');
+        }
+      );
+    }
+
+  }
+
+  refreshRate(memeId : number){
     this.voteService.getMemeRate(memeId).subscribe(
       (res : any) =>{
         this.memeDetails['rate'] = res;

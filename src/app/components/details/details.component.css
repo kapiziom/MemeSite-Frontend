@@ -61,3 +61,15 @@ img.responsive {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
+
+.comment-other {
+  color: red;
+  float: right;
+  margin-right: 10px;
+}
+.comment-other:hover {
+  color: darkred;
+  text-decoration: underline;
+  text-decoration-color: darkred;
+  cursor: pointer;
+}

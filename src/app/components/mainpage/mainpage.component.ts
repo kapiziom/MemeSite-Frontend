@@ -56,32 +56,34 @@ export class MainpageComponent implements OnInit {
   }
 
   onPlus(memeId: number, i: number){
-    this.voteService.send(1, memeId).subscribe(
+    this.voteService.SendVote(1, memeId).subscribe(
       (res:any) => {
+        this.refreshRate(memeId, i);
           this.toastr.success('voted successful', 'success');
-          this.afterVote(memeId, i)
       },
       err => {
         console.log(err);
+        this.refreshRate(memeId, i);
         this.toastr.error('you have been voted for this option', 'not success');
       }
     );
   }
 
   onMinus(memeId: number, i: number){
-    this.voteService.send(-1, memeId).subscribe(
+    this.voteService.SendVote(-1, memeId).subscribe(
       (res:any) => {
+        this.refreshRate(memeId, i);
           this.toastr.success('voted successful', 'success');
-          this.afterVote(memeId, i)
       },
       err => {
         console.log(err);
+        this.refreshRate(memeId, i);
         this.toastr.error('you have been voted for this option', 'not success');
       }
     );
   }
 
-  afterVote(memeId : number, i: number){
+  refreshRate(memeId : number, i: number){
     this.voteService.getMemeRate(memeId).subscribe(
       (res : any) =>{
         this.memeList[i]['rate'] = res;
