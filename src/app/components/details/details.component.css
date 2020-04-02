@@ -42,6 +42,22 @@ img.responsive {
   max-width: 600px;
 }
 
+.perComment {
+  margin-top: 5px;
+  position: relative
+  /* border: 1px solid grey; */
+}
+
+.comment-header {
+  padding-left: 10px;
+  border: 1px solid grey;
+  width: 100%;
+}
+
 .comment-text {
+  margin-top: 1px;
+  padding-left: 15px;
+  border: 1px solid grey;
+  word-wrap: break-word;
   white-space: pre-wrap;
 }
