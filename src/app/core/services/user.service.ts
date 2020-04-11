@@ -74,6 +74,22 @@ export class UserService {
     return isMatch;
   }
 
+  getUserId(){
+    if(this.IsLoggedIn() == true){
+      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+      var userId = payLoad.UserID;
+      return userId;
+     }
+  }
+
+  getUserName(){
+    if(this.IsLoggedIn() == true){
+      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+      var userName = payLoad.userName;
+      return userName;
+     }
+  }
+
   CheckRoleStaff(){
     var userRole = null;
      if(this.IsLoggedIn() == true){

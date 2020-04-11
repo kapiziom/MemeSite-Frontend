@@ -1,0 +1,52 @@
+#archive {
+  float: right;
+  background-color: black;
+  color: #fff;
+  border-radius: 5px;
+  height: 50px;
+  width: 120px;
+}
+
+#accept {
+  float: right;
+  margin-right: 5px;
+  background-color: blue;
+  color: #fff;
+  border-radius: 5px;
+  height: 50px;
+  width: 120px;
+}
+
+#unaccept {
+  float: right;
+  margin-right: 5px;
+  background-color: darkred;
+  color: #fff;
+  border-radius: 5px;
+  height: 50px;
+  width: 120px;
+}
+
+#accept:hover {
+  background-color: skyblue;
+}
+
+#unaccept:hover {
+  background-color: red;
+}
+
+#archive:hover {
+  background-color: gray;
+}
+
+#unaccept:active {
+  background-color: darkred;
+}
+
+#archive:active {
+  background-color: black;
+}
+
+#accept:active {
+  background-color: darkblue;
+}

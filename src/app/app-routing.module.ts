@@ -9,7 +9,6 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { LoginComponent } from './components/user/login/login.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { UploadComponent } from './components/upload/upload.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ByCategoryComponent } from './components/by-category/by-category.component';
@@ -24,8 +23,7 @@ const routes: Routes = [
   {path: 'details/:id' , component: DetailsComponent },
   {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
   {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']} },
-  {path: 'profile', component: UserProfileComponent, canActivate:[AuthGuard] },
-  {path: 'checkuser/:username' , component: CheckUserComponent },
+  {path: 'profile/:username' , component: CheckUserComponent },
   {path: 'user', component: UserComponent,
   children: [
     {path: 'registration', component: RegistrationComponent },

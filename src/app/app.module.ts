@@ -18,7 +18,6 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MemeService } from './core/services/meme.service';
 import { CategoryService } from './core/services/category.service';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
@@ -29,6 +28,8 @@ import { VoteService } from './core/services/vote.service';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { CommentService } from './core/services/comment.service';
+import { VoteComponent } from './components/vote_buttons/vote.component';
+import { ProfileService } from './core/services/profile.service';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,12 @@ import { CommentService } from './core/services/comment.service';
     AdminPanelComponent,
     RegistrationComponent,
     LoginComponent,
-    UserProfileComponent,
     NotFoundComponent,
     ByCategoryComponent,
     CheckUserComponent,
     CategoriesComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +73,8 @@ import { CommentService } from './core/services/comment.service';
     MemeService,
     CategoryService,
     VoteService,
-    CommentService
+    CommentService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

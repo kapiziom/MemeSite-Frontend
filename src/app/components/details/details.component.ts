@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
 
   thenum = this.router.url.match(/\d+/)[0];
   MemeID = +this.thenum;
-  memeDetails;
+  memeDetails: any;
   categories;
   comments;
   commentValue: string;
@@ -38,6 +38,7 @@ export class DetailsComponent implements OnInit {
     this.memeService.GetMemeDetail(MemeID).subscribe(
       (res : any) =>{
         this.memeDetails = res;
+        console.log(this.memeDetails);
       },
       err =>{
         console.log(err);
@@ -106,7 +107,6 @@ export class DetailsComponent implements OnInit {
         }
       );
     }
-
   }
 
   refreshRate(memeId : number){

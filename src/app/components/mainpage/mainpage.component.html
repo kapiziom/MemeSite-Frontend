@@ -1,12 +1,10 @@
 <div class="container content">
     <div class="row">
-        <div class="col-md-2">
-            <app-categories></app-categories>
-        </div>
-        <div class="col-md-7">
+        
+        <div class="col-md-8">
             <div id="content" *ngFor="let item of memeList; let i = index">
                 <div id="test" style="display: inline;">
-                    <a *ngIf="item.userName != 'admin'" id="ref" href="checkuser/{{item.userName}}">{{item.userName}}</a>
+                    <a *ngIf="item.userName != 'admin'" id="ref" href="profile/{{item.userName}}">{{item.userName}}</a>
                     <p *ngIf="item.userName == 'admin'" style="display: inline;">{{item.userName}}</p>
                     <p style="display: inline; padding-left: 5px;"> - {{item.creationDate}}</p>
                     <div *ngIf="userService.IsLoggedIn()" style="float: right;">
@@ -23,17 +21,18 @@
                     <p>Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
                         <a id="ref" href="category/{{item.category.categoryName}}/1">{{item.category.categoryName}}</a> </p>
                 </div>
-                <div id="vote" *ngIf="userService.IsLoggedIn()">
-                    <button id="plus" class="btn btn-lg" (click)="onPlus(item.memeId, i)">PLUS</button>
-                    <button id="minus" type="submit" class="btn btn-lg" (click)="onMinus(item.memeId, i)">MINUS</button>
-                </div>
+
+                <app-vote [memeDetails]="memeList[i]" [ShowArchive]="false" [ShowAccept]="false"></app-vote>
+
             </div>
             
             <app-paginator [pageNumber]="PageNumber" [pageCount]="pagecount"></app-paginator>
 
         </div>
-        <div class="col-md-3 d-none d-lg-block d-xl-block" style="background-color: grey;">
-            3/3
+
+        <div class="col-md-4">
+            <app-categories></app-categories>
         </div>
+        
     </div>
 </div>

@@ -1,1 +1,56 @@
-<p>check-user works!</p>
+<div class="container content">
+    <div class="row">
+        
+        <div class="col-md-8">
+
+            <div class="userstats">
+                <h2 id="username">{{stats?.userName}}</h2>
+                <p class="values">main page/total: {{stats?.totalAccepted}}/{{stats?.totalMemes}}</p>
+                <p class="values">comments: {{stats?.totalComments}}</p>
+                <p class="values">{{stats?.joined}}</p>
+                
+            </div>
+
+            <div id="content" *ngFor="let item of memeList; let i = index">
+                <div id="test" style="display: inline;">
+                    <a *ngIf="item.userName != 'admin'" id="ref" href="checkuser/{{item.userName}}">{{item.userName}}</a>
+                    <p *ngIf="item.userName == 'admin'" style="display: inline;">{{item.userName}}</p>
+                    <p style="display: inline; padding-left: 5px;"> - {{item.creationDate}}</p>
+                    <div *ngIf="userService.IsLoggedIn()" style="float: right;">
+                        <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(item.memeId)">
+                    </div>
+                </div>
+                <a href="details/{{item.memeId}}" style="text-decoration: none;">
+                    <h2 id="title" >{{item.title}}</h2>
+                    <div >
+                        <img class="responsive" *ngIf="item.byteHead != null" src="{{item.byteHead}},{{item.byteImg}}">
+                    </div>
+                </a>
+                <div>
+                    <p>Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
+                        <a id="ref" href="category/{{item.category.categoryName}}/1">{{item.category.categoryName}}</a> </p>
+                </div>
+                
+                <app-vote [memeDetails]="memeList[i]"></app-vote>
+
+            </div>
+            
+            <!--LOAD MORE-->
+            <button type="submit" class="btn btn-lg btn-block" (click)="loadMoreContent()" [disabled]="!canLoadMoreContent">LOAD MORE</button>
+
+        </div>
+        <div class="col-md-4 d-none d-lg-block d-xl-block" style="background-color: grey;">
+            
+            <div class="userstats">
+                <h2 id="username">{{stats?.userName}}</h2>
+                <p class="values">main page/total: {{stats?.totalAccepted}}/{{stats?.totalMemes}}</p>
+                <p class="values">comments: {{stats?.totalComments}}</p>
+                <p class="values">{{stats?.joined}}</p>
+                
+            </div>
+
+            Acc Settings
+
+        </div>
+    </div>
+</div>

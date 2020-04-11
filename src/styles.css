@@ -84,7 +84,7 @@ div.paginator {
 
 img.responsive {
   width: 100%;
-  max-width: 635px;
+  max-width: 885px;
   height: auto;
 }
 
@@ -108,6 +108,10 @@ button.pageChange:hover {
 .content {
   margin-bottom: 150px;
   margin-top: 30px;
+}
+
+#content {
+  margin-top: 20px;
   border-bottom: 2px solid grey;
 }
 

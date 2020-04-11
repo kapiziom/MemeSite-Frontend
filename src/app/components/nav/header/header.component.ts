@@ -25,6 +25,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  onProfile(){
+    this.router.navigateByUrl('/profile/'+ this.service.getUserName()).then(() => {
+      window.location.reload();
+    });
+  }
+
   SignIn(){
     this.router.navigateByUrl('/user/login');
   }

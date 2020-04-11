@@ -41,52 +41,15 @@ export class MainpageComponent implements OnInit {
   getContent(pageNumber){
     this.memeService.getPagedContent(pageNumber, this.config.itemsPerPage).subscribe(
       (res : any) =>{
+        console.log(res);
         this.pagecount = res['pageCount'];
         if(this.PageNumber > this.pagecount){
           this.router.navigateByUrl('/404');
         }
-        this.memeList = res['memeList'];
-        this.config.totalItems = this.pagecount*this.config.itemsPerPage;
+        this.memeList = res['items'];
+        console.log(this.pagecount);
         console.log(this.memeList);
-      },
-      err =>{
-        console.log(err);
-      },
-    );
-  }
-
-  onPlus(memeId: number, i: number){
-    this.voteService.SendVote(1, memeId).subscribe(
-      (res:any) => {
-        this.refreshRate(memeId, i);
-          this.toastr.success('voted successful', 'success');
-      },
-      err => {
-        console.log(err);
-        this.refreshRate(memeId, i);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
-  }
-
-  onMinus(memeId: number, i: number){
-    this.voteService.SendVote(-1, memeId).subscribe(
-      (res:any) => {
-        this.refreshRate(memeId, i);
-          this.toastr.success('voted successful', 'success');
-      },
-      err => {
-        console.log(err);
-        this.refreshRate(memeId, i);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
-  }
-
-  refreshRate(memeId : number, i: number){
-    this.voteService.getMemeRate(memeId).subscribe(
-      (res : any) =>{
-        this.memeList[i]['rate'] = res;
+        this.config.totalItems = this.pagecount*this.config.itemsPerPage;
       },
       err =>{
         console.log(err);

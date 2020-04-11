@@ -1,0 +1,9 @@
+<div id="vote" *ngIf="userService.IsLoggedIn()">
+    <button id="plus" [disabled]="memeDetails?.voteValue == 1" class="btn btn-lg" (click)="OnVote(memeDetails.memeId, memeDetails.isVoted, 1)">PLUS</button>
+    <button id="minus" [disabled]="memeDetails?.voteValue == -1" class="btn btn-lg" (click)="OnVote(memeDetails.memeId, memeDetails.isVoted, -1)">MINUS</button>
+    
+    <button id="archive" *ngIf="userService.CheckRoleStaff()=='Administrator' && memeDetails?.isArchived == false && ShowArchive != false"  class="btn btn-lg" (click)="OnArchive(true, memeDetails.memeId)">Archive</button>
+    <button id="archive" *ngIf="userService.CheckRoleStaff()=='Administrator' && memeDetails?.isArchived == true && ShowArchive != false" class="btn btn-lg" (click)="OnArchive(false, memeDetails.memeId)">Unarchive</button>
+    <button id="accept" *ngIf="userService.CheckRoleStaff()=='Administrator' && memeDetails?.isAccepted == false && ShowAccept != false" class="btn btn-lg" (click)="OnAccept(true, memeDetails.memeId)">Accept</button>
+    <button id="unaccept"*ngIf="userService.CheckRoleStaff()=='Administrator' && memeDetails?.isAccepted == true && ShowAccept != false" class="btn btn-lg" (click)="OnAccept(false, memeDetails.memeId)">Unaccept</button>
+</div>

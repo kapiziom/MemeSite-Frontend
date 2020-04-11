@@ -24,10 +24,9 @@
                     <p>Rate: {{memeDetails?.rate}} - Comments: {{memeDetails?.commentCount}} - Category: 
                         <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a> </p>
                 </div>
-                <div id="vote" *ngIf="userService.IsLoggedIn()">
-                    <button id="plus" [disabled]="memeDetails?.voteValue == 1" class="btn btn-lg" (click)="OnVote(memeDetails.memeId, memeDetails.isVoted, 1)">PLUS</button>
-                    <button id="minus" [disabled]="memeDetails?.voteValue == -1" type="submit" class="btn btn-lg" (click)="OnVote(memeDetails.memeId, memeDetails.isVoted, -1)">MINUS</button>
-                </div>
+
+                <app-vote [memeDetails]="memeDetails"></app-vote>
+
             </div>
 
             <div class="comments">
@@ -51,14 +50,14 @@
                         <div *ngFor="let item of comments; let i = index">
                             <div class="perComment">
                                 <div class="comment-header">
-                                    <a style="display: inline;" *ngIf="item.userName != 'admin'" id="ref" href="checkuser/{{item.userName}}">{{item.userName}}</a>
+                                    <a style="display: inline;" *ngIf="item.userName != 'admin'" id="ref" href="profile/{{item.userName}}">{{item.userName}}</a>
                                     <p style="display: inline;" *ngIf="item.userName == 'admin'">{{item.userName}}</p>
                                     <p style="display: inline;"> - {{item.creationDate}}</p>
                                     <p *ngIf="item.editDate" style="display: inline;"> - Last edit: {{item.editDate}}</p>
                                     
-                                    <p class="comment-other" (click)="OnReport()">Report</p>
-                                    <p style="float: right; margin-right: 10px;"> - </p>
-                                    <p class="comment-other" (click)="OnReply()">Reply</p>
+                                    <!--<p class="comment-other" (click)="OnReport()">Report</p>
+                                     <p style="float: right; margin-right: 10px;"> - </p>
+                                    <p class="comment-other" (click)="OnReply()">Reply</p> -->
                                     
                                 </div>
                                 <div>

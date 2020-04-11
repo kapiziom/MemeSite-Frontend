@@ -46,48 +46,9 @@ export class UnacceptedComponent implements OnInit {
         if(this.PageNumber > this.pagecount){
           this.router.navigateByUrl('/404');
         }
-        this.memeList = res['memeList'];
+        this.memeList = res['items'];
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
         console.log(this.memeList);
-      },
-      err =>{
-        console.log(err);
-      },
-    );
-  }
-
-  onPlus(memeId: number, i: number){
-    this.voteService.SendVote(1, memeId).subscribe(
-      (res:any) => {
-        this.refreshRate(memeId, i);
-          this.toastr.success('voted successful', 'success');
-      },
-      err => {
-        console.log(err);
-        this.refreshRate(memeId, i);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
-  }
-
-  onMinus(memeId: number, i: number){
-    this.voteService.SendVote(-1, memeId).subscribe(
-      (res:any) => {
-        this.refreshRate(memeId, i);
-          this.toastr.success('voted successful', 'success');
-      },
-      err => {
-        console.log(err);
-        this.refreshRate(memeId, i);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
-  }
-
-  refreshRate(memeId : number, i: number){
-    this.voteService.getMemeRate(memeId).subscribe(
-      (res : any) =>{
-        this.memeList[i]['rate'] = res;
       },
       err =>{
         console.log(err);

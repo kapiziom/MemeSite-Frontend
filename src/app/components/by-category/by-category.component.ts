@@ -30,7 +30,7 @@ export class ByCategoryComponent implements OnInit {
               private toastr: ToastrService) {
                 this.config = {
                   currentPage: 1,
-                  itemsPerPage: 1,
+                  itemsPerPage: 3,
                   totalItems:0
                   };
               }
@@ -50,50 +50,11 @@ export class ByCategoryComponent implements OnInit {
     this.memeService.getCategoryPagedContent(this.category, pageNumber, this.config.itemsPerPage).subscribe(
       (res : any) =>{
         this.pagecount = res['pageCount'];
-        if(this.PageNumber > this.pagecount){
-          this.router.navigateByUrl('/404');
-        }
-        this.memeList = res['memeList'];
-        this.config.totalItems = this.pagecount*this.config.itemsPerPage;
-      },
-      err =>{
-        console.log(err);
-      },
-    );
-  }
-
-  onPlus(memeId: number, i: number){
-    this.voteService.SendVote(1, memeId).subscribe(
-      (res:any) => {
-        this.refreshRate(memeId, i);
-          this.toastr.success('voted successful', 'success');
-      },
-      err => {
-        console.log(err);
-        this.refreshRate(memeId, i);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
-  }
-
-  onMinus(memeId: number, i: number){
-    this.voteService.SendVote(-1, memeId).subscribe(
-      (res:any) => {
-        this.refreshRate(memeId, i);
-          this.toastr.success('voted successful', 'success');
-      },
-      err => {
-        console.log(err);
-        this.refreshRate(memeId, i);
-        this.toastr.error('you have been voted for this option', 'not success');
-      }
-    );
-  }
-
-  refreshRate(memeId : number, i: number){
-    this.voteService.getMemeRate(memeId).subscribe(
-      (res : any) =>{
-        this.memeList[i]['rate'] = res;
+        // if(this.PageNumber > this.pagecount){
+        //   this.router.navigateByUrl('/404');
+        // }
+        this.memeList = res['items'];
+        this.config.totalItems = res['totalItems'];
       },
       err =>{
         console.log(err);

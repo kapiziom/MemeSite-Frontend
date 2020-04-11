@@ -1,0 +1,15 @@
+.userstats {
+    border: 2px solid grey;
+    border-radius: 15px;
+}
+
+#username {
+    margin-left: 40px;
+    color: #545d6a;
+    font-weight: 700;
+}
+
+.values {
+    margin-left: 25px;
+    font-size: 30px;
+}

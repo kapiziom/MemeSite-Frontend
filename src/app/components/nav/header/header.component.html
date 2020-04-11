@@ -25,7 +25,7 @@
                     <a id="navtxt" routerLink="/adminpanel" class="nav-link text-white" *ngIf="service.CheckRoleStaff()=='Administrator'">Admin Panel</a>
                   </li>
                   <li class="nav-item">
-                    <button id="yprofile" class="nav-link btn btn-light" style="margin-right: 5px;" routerLink="/profile" *ngIf="service.IsLoggedIn()">Your Profile!</button>
+                    <button id="yprofile" class="nav-link btn btn-light" style="margin-right: 5px;" (click)="onProfile()" *ngIf="service.IsLoggedIn()">Your Profile!</button>
                   </li>
                   <li>
                     <button class="nav-link btn btn-danger my-2 my-sm-0 text-white"  (click)="onLogout()" *ngIf="service.IsLoggedIn()">Logout</button>

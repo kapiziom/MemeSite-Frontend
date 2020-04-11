@@ -16,6 +16,7 @@ export class VoteService {
       value: voteValue,
       memeRefId: memeId,
     };
+    console.log(body);
     return this.http.post(this.BaseURI+'/Vote/SendVote', body);
   }
 
