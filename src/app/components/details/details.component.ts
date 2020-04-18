@@ -21,6 +21,8 @@ export class DetailsComponent implements OnInit {
   comments;
   commentValue: string;
 
+  isEdit: number = null;
+
   constructor(private memeService: MemeService,
     private categoryService: CategoryService,
     private voteService: VoteService,
@@ -33,7 +35,7 @@ export class DetailsComponent implements OnInit {
     this.getMeme(this.MemeID);
     this.getComments(this.MemeID);
   }
-
+//section - meme
   getMeme(MemeID){
     this.memeService.GetMemeDetail(MemeID).subscribe(
       (res : any) =>{
@@ -44,38 +46,6 @@ export class DetailsComponent implements OnInit {
         console.log(err);
       },
     );
-  }
-
-  getComments(meme_id){
-    this.commentService.getComments(meme_id).subscribe(
-      (res : any) =>{
-        this.comments = res;
-      },
-      err =>{
-        console.log(err);
-      },
-    );
-  }
-
-  OnSubmit(){
-    this.commentService.postComment(this.MemeID).subscribe(
-      (res:any) => {
-        this.commentService.addComment.reset();
-        this.toastr.success('New comment added', 'success');
-      },
-      err => {
-        console.log(err);
-        this.toastr.error('New comment didnt add', 'not success');
-      }
-    );
-  }
-
-  OnReply(){
-
-  }
-
-  OnReport(){
-
   }
 
   OnVote(memeId: number, isVoted: boolean, voteValue: number){
@@ -124,6 +94,89 @@ export class DetailsComponent implements OnInit {
     console.log(number);
     console.log('addfavourite works');
   }
+//section comments
+  getComments(meme_id){
+    this.commentService.getCommentsForMeme(meme_id).subscribe(
+      (res : any) =>{
+        this.comments = res;
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
 
+  OnSubmit(){
+    this.commentService.postComment(this.MemeID).subscribe(
+      (res:any) => {
+        this.commentService.addComment.reset();
+        this.comments.splice(0, 0, res); 
+        this.toastr.success('New comment added', 'success');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('New comment didnt add', 'not success');
+      }
+    );
+  }
+
+  OnEdit(i){
+    this.isEdit = i;
+    this.commentService.editComment.setValue({
+      txt : this.comments[i]['txt'],
+    });
+    console.log(this.commentService.editComment.value.txt);
+    console.log(i);
+  }
+
+  SaveEdit(i, commentId){
+    if(this.commentService.editComment.value.txt ==  this.comments[i]['txt']){
+      this.toastr.error('There is no changes', 'not success');
+      this.commentService.editComment.reset();
+      this.isEdit = null;
+    }
+    else{
+      this.commentService.putComment(commentId).subscribe(
+        (res:any) => {
+          this.isEdit = null;
+          this.comments[i] = res;
+          this.commentService.editComment.reset();
+          this.toastr.success('comment edited', 'success');
+        },
+        err => {
+          console.log(err);
+          this.isEdit = null;
+          this.commentService.editComment.reset();
+          this.toastr.error('comment didnt edit', 'not success');
+        }
+      );
+    }
+  }
+
+  CancelEdit(){
+    this.commentService.editComment.reset();
+    this.isEdit = null;
+  }
+
+  OnDelete(i, commentId){
+    this.commentService.deleteComment(commentId).subscribe(
+      (res:any) => {
+        this.comments.splice(i, 1);
+        this.toastr.success('comment deleted', 'success');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('comment didnt delete', 'not success');
+      }
+    );
+  }
+
+  OnReply(){
+
+  }
+
+  OnReport(){
+
+  }
 
 }

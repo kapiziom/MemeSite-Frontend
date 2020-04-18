@@ -30,6 +30,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { CommentService } from './core/services/comment.service';
 import { VoteComponent } from './components/vote_buttons/vote.component';
 import { ProfileService } from './core/services/profile.service';
+import { UsersCommentsComponent } from './components/check-user/users-comments/users-comments.component';
+import { UsersContentComponent } from './components/check-user/users-content/users-content.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ProfileService } from './core/services/profile.service';
     CheckUserComponent,
     CategoriesComponent,
     PaginatorComponent,
-    VoteComponent
+    VoteComponent,
+    UsersCommentsComponent,
+    UsersContentComponent
   ],
   imports: [
     BrowserModule,

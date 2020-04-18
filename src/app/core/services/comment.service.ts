@@ -15,8 +15,16 @@ export class CommentService {
     txt :['',[Validators.required, Validators.minLength(3), Validators.maxLength(2000)]],
   });
 
-  getComments(memeId){
-    return this.http.get(this.BaseURI +'/Comment/List/' + memeId);
+  editComment = this.fb.group({
+    txt :['',[Validators.required, Validators.minLength(3), Validators.maxLength(2000)]],
+  });
+
+  getCommentsForMeme(memeId){
+    return this.http.get(this.BaseURI +'/Comment/ListForMeme/' + memeId);
+  }
+
+  getCommentsForUser(userName: string){
+    return this.http.get(this.BaseURI +'/Comment/ListForUser/' + userName);
   }
 
   postComment(memeId){
@@ -25,6 +33,17 @@ export class CommentService {
       memeId: memeId,
     };
     return this.http.post(this.BaseURI +'/Comment', body);
+  }
+
+  putComment(commentId){
+    var body = {
+      txt: this.editComment.value.txt,
+    };
+    return this.http.put(this.BaseURI +'/Comment/' + commentId, body);
+  }
+
+  deleteComment(commentId){
+    return this.http.delete(this.BaseURI + '/Comment/' + commentId);
   }
   
 }

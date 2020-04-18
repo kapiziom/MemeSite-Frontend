@@ -8,7 +8,7 @@
         <div class="col-md-7">
             <div id="content">
                 <div id="test" style="display: inline;">
-                    <a *ngIf="!(memeDetails?.userName == 'admin')" id="ref" href="checkuser/{{memeDetails?.userName}}">{{memeDetails?.userName}}</a>
+                    <a *ngIf="!(memeDetails?.userName == 'admin')" id="ref" href="profile/{{memeDetails?.userName}}">{{memeDetails?.userName}}</a>
                     <p *ngIf="memeDetails?.userName == 'admin'" style="display: inline;">{{memeDetails.userName}}</p>
                     <p style="display: inline; padding-left: 5px;"> - {{memeDetails?.creationDate}}</p>
                     <div *ngIf="userService.IsLoggedIn()" style="float: right;">
@@ -55,13 +55,25 @@
                                     <p style="display: inline;"> - {{item.creationDate}}</p>
                                     <p *ngIf="item.editDate" style="display: inline;"> - Last edit: {{item.editDate}}</p>
                                     
+                                    <p *ngIf="userService.getUserName() == item.userName" class="comment-edit" (click)="OnEdit(i)">edit</p>
+                                    <p *ngIf="userService.getUserName() == item.userName || userService.CheckRoleStaff()=='Administrator'" class="comment-other" (click)="OnDelete(i, item.commentId)">delete</p>
                                     <!--<p class="comment-other" (click)="OnReport()">Report</p>
                                      <p style="float: right; margin-right: 10px;"> - </p>
                                     <p class="comment-other" (click)="OnReply()">Reply</p> -->
                                     
                                 </div>
                                 <div>
-                                    <p class="comment-text">{{item.txt}}</p>
+                                    <form *ngIf="isEdit == i" id="addcomment" class="container" [formGroup]="commentService.editComment" autocomplete="off" (submit)="SaveEdit(i, item.commentId)">
+                                        <div class="row" >
+                                            <div class="form-group required col-md-12">
+                                                <textarea id="addcommenttxt" class="form-control" formControlName="txt">{{item.txt}}</textarea>
+                                                <label class="text-danger" *ngIf="commentService.editComment.get('txt').touched && commentService.editComment.get('txt').errors?.required">txt required</label>
+                                            </div>
+                                        </div> 
+                                        <button id="addbutton" type="submit" class="btn btn-lg" [disabled]="!commentService.editComment.valid">Save</button>  
+                                        <button id="addbutton" class="btn btn-lg" (click)="CancelEdit()">Cancel</button>
+                                    </form>
+                                    <p *ngIf="isEdit != i" class="comment-text">{{item.txt}}</p>
                                 </div>
                             </div>
                         </div>
@@ -76,3 +88,5 @@
         </div>
     </div>
 </div>
+
+
