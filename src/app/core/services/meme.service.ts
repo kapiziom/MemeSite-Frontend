@@ -15,9 +15,15 @@ export class MemeService {
 
    addMeme = this.fb.group({
      title :['',[Validators.required]],
-     txt :'',
+     txt :['',[Validators.minLength(20)]],
      image :  ['',[Validators.required]],
      categoryId : ['',[Validators.required]],
+   });
+
+   editMeme = this.fb.group({
+    title :['',[Validators.required]],
+    txt :['',[Validators.minLength(20)]],
+    categoryId : ['',[Validators.required]],
    });
 
   upload(fileToUpload: File, imgByteHead: string, imageBytes: string | ArrayBuffer){
@@ -31,6 +37,20 @@ export class MemeService {
     };
     console.log(body);
     return this.http.post(this.BaseURI+'/Meme', body);
+  }
+
+  update(memeId){
+    var body = {
+      title: this.editMeme.value.title,
+      txt: this.editMeme.value.txt,
+      categoryId: this.editMeme.value.categoryId,
+    };
+    console.log(body);
+    return this.http.put(this.BaseURI+'/Meme/' + memeId, body);
+  }
+
+  delete(memeId){
+    return this.http.delete(this.BaseURI+'/Meme/' + memeId);
   }
 
   GetMemeDetail(memeId: number){

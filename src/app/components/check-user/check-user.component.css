@@ -13,3 +13,10 @@
     margin-left: 25px;
     font-size: 30px;
 }
+
+#settings {
+    background-color: darkgreen;
+}
+#settings:hover {
+    background-color: green;
+}

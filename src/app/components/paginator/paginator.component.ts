@@ -13,6 +13,7 @@ export class PaginatorComponent implements OnInit {
 
   routewithoutPage : string = null;
   config: any;
+  nextPage: number = 1;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     this.config = {
@@ -27,6 +28,7 @@ export class PaginatorComponent implements OnInit {
     for (var _i = 1; _i < this.activatedRoute.snapshot.url.length-1; _i++) {
       this.routewithoutPage = this.routewithoutPage + '/' + this.activatedRoute.snapshot.url[_i].path;
     }
+    this.nextPage += parseInt(this.pageNumber);
   }
 
   pageChange(newPage){

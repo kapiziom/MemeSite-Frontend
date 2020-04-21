@@ -13,6 +13,9 @@ export class RegistrationComponent implements OnInit {
   constructor(public service: UserService, private toastr:ToastrService, private router: Router) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') != null){
+      this.router.navigateByUrl('/main/1');
+    }
     this.service.registerModel.reset();
   }
 

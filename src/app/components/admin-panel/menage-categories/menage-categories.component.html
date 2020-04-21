@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <div class="wrapped-categories-div">
+      <div>
+        <p class="categoriesLabel">Categories</p>
+      </div>
+      <div class="tab-header" style="width: 100%;">
+        <h2 routerLink='/adminpanel/menagecategories/addcategory' routerLinkActive='active'>Add Category</h2>
+        <h2 routerLink='/adminpanel/menagecategories/categories' routerLinkActive='active'>Categories</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>

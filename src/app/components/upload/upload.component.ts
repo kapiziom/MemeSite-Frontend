@@ -23,7 +23,7 @@ export class UploadComponent implements OnInit {
 
   src: string;
  
-  constructor(public memeServie : MemeService, private categoryService : CategoryService, private toastr : ToastrService) { }
+  constructor(public memeService : MemeService, private categoryService : CategoryService, private toastr : ToastrService) { }
  
   ngOnInit(): void {
     this.GetCategories();
@@ -44,16 +44,16 @@ export class UploadComponent implements OnInit {
   }
 
   OnSubmit(){
-     this.memeServie.upload(this.fileToUpload, this.imgByteHead, this.imageByte).subscribe(
+     this.memeService.upload(this.fileToUpload, this.imgByteHead, this.imageByte).subscribe(
        (res:any) => {
-           this.memeServie.addMeme.reset();
-           this.imageUrl = "assets/img/noimg.jpg"
-           this.imageByte = null;
-           this.toastr.success('New meme uploaded', 'success');
+          this.memeService.addMeme.reset();
+          this.imageUrl = "assets/img/noimg.jpg"
+          this.imageByte = null;
+          this.toastr.success('New meme uploaded', 'success');
        },
        err => {
-         console.log(err);
-         this.toastr.error('New meme didnt upload', 'not success');
+          console.log(err);
+          this.toastr.error('New meme didnt upload', 'not success');
        }
      );
   }

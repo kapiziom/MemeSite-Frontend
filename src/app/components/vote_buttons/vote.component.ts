@@ -3,6 +3,7 @@ import { VoteService } from 'src/app/core/services/vote.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { MemeService } from 'src/app/core/services/meme.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vote',
@@ -18,7 +19,8 @@ export class VoteComponent implements OnInit {
   constructor(private voteService: VoteService,
     private toastr: ToastrService,
     public userService: UserService,
-    private memeService: MemeService) { }
+    private memeService: MemeService,
+    private router: Router) { }
 
   ngOnInit(): void {
     console.log("elo");
@@ -86,6 +88,12 @@ export class VoteComponent implements OnInit {
         this.toastr.error('something went wrong', 'not success');
       }
     );
+  }
+
+  OnEdit(memeId: number){
+    this.router.navigateByUrl('/edit/' + memeId).then(() => {
+      window.location.reload();
+    });
   }
 
   refreshRate(memeId : number){

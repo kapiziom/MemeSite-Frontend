@@ -29,7 +29,7 @@ export class MainpageComponent implements OnInit {
               private toastr: ToastrService) { 
     this.config = {
       currentPage: 1,
-      itemsPerPage: 1,
+      itemsPerPage: 2,
       totalItems:0
       };
   }

@@ -1,34 +1,42 @@
-
-  <form [formGroup]="memeServie.addMeme" autocomplete="off" (submit)="OnSubmit()" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+<div class="wrapper">
+<div class="wrapped-upload-div">
+<div class="container">
+  <div>
+    <p class="uploadLabel">UPLOAD</p>
+  </div>
+  <form [formGroup]="memeService.addMeme" autocomplete="off" (submit)="OnSubmit()" style="max-width: 95%; margin-left: auto; margin-right: auto;">
     <div class="form-group required">
       <label>Category</label><br>
       <select formControlName="categoryId" class="form-control">
-          <option *ngFor="let item of categories" [ngValue]="item.categoryId">
-              {{item.categoryId}}. {{item.categoryName}}
+          <option *ngFor="let item of categories; let i = index" [ngValue]="item.categoryId">
+              {{i+1}}. {{item.categoryName}}
           </option>
       </select>
-      <label class="text-danger" *ngIf="memeServie.addMeme.get('categoryId').touched && memeServie.addMeme.get('categoryId').errors?.required">Category required</label>
+      <label class="text-danger" *ngIf="memeService.addMeme.get('categoryId').touched && memeService.addMeme.get('categoryId').errors?.required">Category required</label>
     </div>
     <div class="form-group required">
         <label>Title</label>
         <input class="form-control" formControlName="title">
-        <label class="text-danger" *ngIf="memeServie.addMeme.get('title').touched && memeServie.addMeme.get('title').errors?.required">Title required</label>
+        <label class="text-danger" *ngIf="memeService.addMeme.get('title').touched && memeService.addMeme.get('title').errors?.required">Title required</label>
     </div>
     <div class="form-group">
       <label>Txt</label>
-      <textarea class="form-control" formControlName="txt"></textarea>
+      <textarea class="form-control" formControlName="txt" placeholder="optional..."></textarea>
+      <label class="text-danger" *ngIf="memeService.addMeme.get('txt').touched && memeService.addMeme.get('txt').errors?.minlength">Minimum 20 characters required</label>
     </div>
     <div class="form-group required">
       <label>Image</label>
-      <input type="file" formControlName="image" class="form-control-file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
-      <label class="text-danger" *ngIf="memeServie.addMeme.get('image').touched && memeServie.addMeme.get('image').errors?.required">Image required</label>
+      <input style="color: white;" type="file" formControlName="image" class="form-control-file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+      <label class="text-danger" *ngIf="memeService.addMeme.get('image').touched && memeService.addMeme.get('image').errors?.required">Image required</label>
     </div>
-    <img [src]="imageUrl" class="display">
-        
+    <img [src]="imageUrl" class="uplImg">
         
     <div class="form-row">
         <div class="form-group col-md-8 offset-md-2" style="padding-top: 10px;">
-            <button type="submit" class="btn btn-lg btn-block" [disabled]="!memeServie.addMeme.valid">Upload</button>
+            <button type="submit" class="btn btn-lg btn-block" [disabled]="!memeService.addMeme.valid">Upload</button>
         </div>
     </div>
-</form>
+  </form>
+</div>
+</div>
+</div>

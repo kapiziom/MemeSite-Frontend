@@ -21,6 +21,14 @@ export class UserService {
     },{validator : this.comparePasswords })
   });
 
+  ChangePassword = this.fb.group({
+    CurrentPassword :['', [Validators.required]],
+    Passwords : this.fb.group({
+      Password :['',[Validators.required,Validators.minLength(6)]],
+      ConfirmPassword :['',Validators.required],
+    },{validator : this.comparePasswords })   
+  });
+
   comparePasswords(fb:FormGroup){
     let confirmPasswordControl = fb.get('ConfirmPassword');
     if(confirmPasswordControl.errors == null || 'passwordMismatch' in confirmPasswordControl.errors){
@@ -45,6 +53,25 @@ export class UserService {
     return this.http.post(this.BaseURI+'/Account/Login',formData);
   }
 
+  changeUserName(formData){
+    return this.http.put(this.BaseURI+'/Account/ChangeUserName',formData);
+  }
+
+  changeEmail(formData){
+    return this.http.put(this.BaseURI+'/Account/ChangeEmail',formData);
+  }
+
+  changePassword(){
+    var body = {
+      OldPassword: this.ChangePassword.value.CurrentPassword,
+      NewPassword: this.ChangePassword.value.Passwords.Password,
+      ConfirmPassword: this.ChangePassword.value.Passwords.ConfirmPassword,
+    };
+    return this.http.put(this.BaseURI+'/Account/ChangePassword', body);
+  }
+
+  
+
   IsLoggedIn(): boolean{
     if(localStorage.getItem('token') != null){
       return true;
@@ -57,7 +84,7 @@ export class UserService {
   getRole(){
     if(this.IsLoggedIn() == true){
       var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-      var userRole = payLoad.role;
+      var userRole = payLoad.userRole;
       return userRole;
     }
   }
@@ -82,6 +109,10 @@ export class UserService {
      }
   }
 
+  getUsernameEmail(){
+    return this.http.get(this.BaseURI+'/Account/UsernameEmail');
+  }
+
   getUserName(){
     if(this.IsLoggedIn() == true){
       var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
@@ -90,11 +121,18 @@ export class UserService {
      }
   }
 
+  setUserName(newUsername: string){
+    if(this.IsLoggedIn() == true){
+      var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+      payLoad.userName = newUsername;
+     }
+  }
+
   CheckRoleStaff(){
     var userRole = null;
      if(this.IsLoggedIn() == true){
        var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-       var userRole = payLoad.role;
+       var userRole = payLoad.userRole;
        if(userRole == 'Administrator'){
          return 'Administrator';
        }

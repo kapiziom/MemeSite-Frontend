@@ -89,6 +89,10 @@ export class CheckUserComponent implements OnInit {
     }
   }
 
+  GoSettings(){
+    this.router.navigateByUrl('/settings');
+  }
+
   addFavourite(memeId: Number){
 
   }

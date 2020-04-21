@@ -1,5 +1,56 @@
+@media only screen and (min-width: 620px) {
+  #vote {
+    display: inline;
+  }
+  #buttons-div {
+    margin-bottom: 10px;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+
+  #buttons-div {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+  }
+  
+  #vote {
+    width: 100%;
+  }
+  #plus {
+    width: 49.5%;
+  }
+  #minus {
+    width: 49.5%;
+    margin-left: 1%;
+  }
+  
+}
+
+/* region styles */
+
+#buttons-div {
+  width: 100%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#vote {
+  margin-bottom: 10px;
+}
+
+#StatusButtons {
+  display: inline;
+}
+
 #archive {
   float: right;
+  margin-left: 2px;
   background-color: black;
   color: #fff;
   border-radius: 5px;
@@ -9,7 +60,6 @@
 
 #accept {
   float: right;
-  margin-right: 5px;
   background-color: blue;
   color: #fff;
   border-radius: 5px;
@@ -19,10 +69,10 @@
 
 #unaccept {
   float: right;
-  margin-right: 5px;
   background-color: darkred;
   color: #fff;
   border-radius: 5px;
+  text-align: center;
   height: 50px;
   width: 120px;
 }

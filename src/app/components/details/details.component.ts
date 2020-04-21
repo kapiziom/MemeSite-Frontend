@@ -39,12 +39,28 @@ export class DetailsComponent implements OnInit {
   getMeme(MemeID){
     this.memeService.GetMemeDetail(MemeID).subscribe(
       (res : any) =>{
+        if(res == null){
+          this.router.navigateByUrl('/404');
+        }
         this.memeDetails = res;
         console.log(this.memeDetails);
       },
       err =>{
         console.log(err);
       },
+    );
+  }
+
+  OnDeleteMeme(){
+    this.memeService.delete(this.MemeID).subscribe(
+      (res:any) => {
+        this.toastr.success('voted successful', 'success');
+        this.router.navigateByUrl('/main/1');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('something went wrong', 'not success');
+      }
     );
   }
 

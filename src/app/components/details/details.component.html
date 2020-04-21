@@ -15,14 +15,17 @@
                         <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(memeDetails.memeId)">
                     </div>
                 </div>
-                    <h2 style="color: black;" >{{memeDetails?.title}}</h2>
+                    <h2 style="color: black; word-wrap: break-word" >{{memeDetails?.title}}</h2>
                     <div>
                         <img class="responsive" *ngIf="memeDetails?.byteHead != null" src="{{memeDetails.byteHead}},{{memeDetails.byteImg}}">
                     </div>
                 
-                <div>
-                    <p>Rate: {{memeDetails?.rate}} - Comments: {{memeDetails?.commentCount}} - Category: 
-                        <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a> </p>
+                <div style="margin-bottom: 16px;">
+                    <p style="display: inline;">Rate: {{memeDetails?.rate}} - Comments: {{memeDetails?.commentCount}} - Category: 
+                        <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a>
+                    </p>
+                    <p class="memeDelete" (click)="OnDeleteMeme()" *ngIf="userService.getUserId() == memeDetails?.userId || userService.CheckRoleStaff()=='Administrator'">DELETE</p>
+                    <a class="memeEdit" href="edit/{{memeDetails?.memeId}}" *ngIf="userService.getUserId() == memeDetails?.userId">edit</a>
                 </div>
 
                 <app-vote [memeDetails]="memeDetails"></app-vote>
@@ -64,14 +67,15 @@
                                 </div>
                                 <div>
                                     <form *ngIf="isEdit == i" id="addcomment" class="container" [formGroup]="commentService.editComment" autocomplete="off" (submit)="SaveEdit(i, item.commentId)">
-                                        <div class="row" >
                                             <div class="form-group required col-md-12">
-                                                <textarea id="addcommenttxt" class="form-control" formControlName="txt">{{item.txt}}</textarea>
+                                                <textarea id="updatecommenttxt" class="form-control" formControlName="txt">{{item.txt}}</textarea>
                                                 <label class="text-danger" *ngIf="commentService.editComment.get('txt').touched && commentService.editComment.get('txt').errors?.required">txt required</label>
                                             </div>
-                                        </div> 
-                                        <button id="addbutton" type="submit" class="btn btn-lg" [disabled]="!commentService.editComment.valid">Save</button>  
-                                        <button id="addbutton" class="btn btn-lg" (click)="CancelEdit()">Cancel</button>
+                                            <div style="justify-content: center; text-align: center;">
+                                                <button id="updateButton" type="submit" class="btn btn-lg" [disabled]="!commentService.editComment.valid">Save</button>  
+                                                <button id="cancelButton" class="btn btn-lg" (click)="CancelEdit()">Cancel</button>
+                                            </div>
+                                        
                                     </form>
                                     <p *ngIf="isEdit != i" class="comment-text">{{item.txt}}</p>
                                 </div>

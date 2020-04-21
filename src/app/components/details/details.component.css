@@ -10,7 +10,7 @@ img.responsive {
     border-left: 3px solid grey;
     border-right: 3px solid grey;
     border-bottom: 3px solid grey;
-    border-top: 3px solid grey;
+    border-top: 1px solid grey;
 }
 
 #addcommenttxt {
@@ -69,6 +69,36 @@ img.responsive {
   border-right: 3px solid grey;
   border-bottom: 3px solid grey;
   border-top: 3px solid grey;
+}
+
+#updateButton {
+  border-radius: 5px;
+  width: 60%;
+  background-color: darkgreen;
+  color: #fff;
+  margin-bottom: 15px;
+}
+#updateButton:hover {
+  background-color: green;
+}
+
+#cancelButton {
+  border-radius: 5px;
+  margin-left: 10px;
+  width: 25%;
+  background-color: darkred;
+  color: #fff;
+  margin-bottom: 15px;
+}
+#cancelButton:hover {
+  background-color: red;
+}
+
+#updatecommenttxt {
+  margin-top: 15px;
+  min-height: 80px;
+  max-width: 100%;
+  border: 2px solid grey;
 }
 
 .comment-edit {

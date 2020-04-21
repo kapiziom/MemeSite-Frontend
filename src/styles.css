@@ -1,6 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
 body{
-    background-color: white;
+    /* background-color: whitesmoke; */
+    background-color: rgb(80, 77, 77);
+    /* background-color: grey; */
 }
 
 #navtxt {
@@ -20,8 +21,53 @@ body{
   color: white;
 }
 
-.content {
-  margin-bottom: 150px;
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.wrapped-div {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #2e3137;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+.tab-header{
+  text-align: center;
+}
+
+.tab-header h2.active {
+  color: #fff;
+  border-bottom: 4px solid #fff;
+}
+
+.tab-header h2 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  display:inline-block;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+  color: #545d6a;
+  border-bottom: 2px solid #545d6a;
+}
+
+.tab-header h2:focus {
+    outline: none;
 }
 
 button[type=submit].btn{
@@ -74,30 +120,19 @@ div.form-group label:first-child{
   font-size: 0.9rem;
 }
 
-div.paginator {
-  background-color: grey;
-  margin-bottom: 30px;
-  justify-content: center;
-  text-align: center;
-  max-height: 50px;
-}
-
 img.responsive {
-  width: 100%;
-  max-width: 885px;
+  width: 95%;
+  max-width: 800px;
   height: auto;
-}
-
-button.pageChange:hover {
-  background-color: black;
-  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #ref {
   display: inline-block;
-  padding-left: 5px;
   text-decoration: none;
-  color: black;
+  color: lightblue;
 }
 
 #ref:hover {
@@ -105,20 +140,31 @@ button.pageChange:hover {
   color: blue;
 }
 
+#ref-user {
+  display: inline-block;
+  padding-left: 2.5%;
+  text-decoration: none;
+  color: lightblue;
+}
+
+#ref-user:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+
 .content {
+  max-width: 95%;
   margin-bottom: 150px;
   margin-top: 30px;
 }
 
+
 #content {
   margin-top: 20px;
-  border-bottom: 2px solid grey;
 }
 
 
-#vote {
-  margin-bottom: 10px;
-}
 
 #plus {
   background-color: #04c582;
@@ -162,7 +208,9 @@ button.pageChange:hover {
 }
 
 #title {
-  color: black;
+  color: whitesmoke;
+  padding-left: 2.5%;
+  display: block;
   max-width: 400px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -172,4 +220,24 @@ button.pageChange:hover {
 #title:hover {
   text-decoration: none;
   color: blue;
+}
+
+.memeDelete {
+  float: right;
+  cursor: pointer;
+  color: red;
+}
+
+.memeDelete:hover {
+  color: darkred;
+}
+
+.memeEdit {
+  float: right;
+  margin-right: 10px;
+  color: blue;
+}
+
+.memeEdit:hover {
+  color: darkblue;
 }

@@ -1,0 +1,28 @@
+
+<form >
+    <div *ngFor="let item of categories; let i = index" style="text-align: center; color: #545d6a; font-size: 30px;">
+        <b >{{item.categoryId}}. {{item.categoryName}}</b><br>
+        <div style="margin-bottom: 10px;">
+            <button id="BEdit"  (click)="OnEdit(i)" class="btn btn-lg">Edit</button>
+            <button id="BDelete" (click)="OnDelete(i, item.categoryId)" class="btn btn-lg">Delete</button>
+        </div>
+        
+        <div>
+            <form *ngIf="isEdit == i" style="max-width: 300px; margin-left: auto; margin-right: auto;"  [formGroup]="categoryService.category" autocomplete="off" (submit)="SaveEdit(i, item.categoryId)">
+                    <div class="form-group required col-md-12">
+                        <input class="form-control" formControlName="categoryName">
+                        <label class="text-danger" *ngIf="categoryService.category.get('categoryName').touched && categoryService.category.get('categoryName').errors?.required">categoryName required</label>
+                        <label class="text-danger" *ngIf="categoryService.category.get('categoryName').touched && categoryService.category.get('categoryName').errors?.maxlength">max length is 22 characters</label>
+                    </div>
+                    <div style="justify-content: center; text-align: center;">
+                        <button id="updateButton" type="submit" class="btn btn-lg" [disabled]="!categoryService.category.valid">Save</button>  
+                        <button id="cancelButton" class="btn btn-lg" (click)="CancelEdit()">Cancel</button>
+                    </div>
+            </form>
+        </div>
+
+    </div>
+</form>
+    
+
+      

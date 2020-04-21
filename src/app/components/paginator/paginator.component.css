@@ -1,0 +1,76 @@
+.pageChange {
+    color: white;
+    margin-left: 1px;
+    height: 70px;
+    width: 70px;
+    font-size: 30px;
+    margin-top: 5px;
+    background-color: #303238;
+}
+
+div.row {
+    border: 1px solid gray;
+    margin-left: 1%;
+    margin-bottom: 30px;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    max-height: 85px;
+    width: 98%;
+    max-width: 800px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #2e3137;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+.pageNumber {
+    color: white;
+    font-size: 30px;
+    margin-top: 15px;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+}
+
+
+button.pageChange:hover {
+  background-color: black;
+  color: white;
+}
+
+a.pageChange:hover {
+  background-color: black;
+  color: white;
+}
+
+.wrapper-paginator {
+    border: 3px solid yellowgreen;
+    margin-bottom: 30px;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    max-height: 70px;
+    display: flex;
+  align-items: center
+}
+
+.paginator {
+    border: 2px solid orange;
+    
+    height: 70px;
+    
+    width: 100%;
+    max-width: 800px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: gray;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+
+  
+ 

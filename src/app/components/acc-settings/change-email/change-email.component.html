@@ -1,0 +1,11 @@
+<form #form='ngForm' class="mb-4" autocomplete="off" (submit)="onSubmit(form)">
+    <div class="form-group">
+        <label>New email</label>
+        <input class= "form-control" #newEmail="ngModel" name="newEmail" [(ngModel)]="formModel.newEmail" required>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+            <button type="submit" class="btn btn-lg btn-block" [disabled]="form.invalid">Save new email</button>
+        </div>
+    </div>
+</form>

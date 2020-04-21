@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="wrapped-upload-div">
+<div class="container">
+  <div>
+    <p class="uploadLabel">EDIT</p>
+  </div>
+  <form [formGroup]="memeService.editMeme" autocomplete="off" (submit)="OnSubmit()" style="max-width: 95%; margin-left: auto; margin-right: auto;">
+    <div class="form-group required">
+      <label>Category</label><br>
+      <select formControlName="categoryId" class="form-control">
+          <option *ngFor="let item of categories" [ngValue]="item.categoryId">
+              {{item.categoryId}}. {{item.categoryName}}
+          </option>
+      </select>
+      <label class="text-danger" *ngIf="memeService.editMeme.get('categoryId').touched && memeService.editMeme.get('categoryId').errors?.required">Category required</label>
+    </div>
+    <div class="form-group required">
+        <label>Title</label>
+        <input class="form-control" formControlName="title">
+        <label class="text-danger" *ngIf="memeService.editMeme.get('title').touched && memeService.editMeme.get('title').errors?.required">Title required</label>
+    </div>
+    <div class="form-group">
+      <label>Txt</label>
+      <textarea class="form-control" formControlName="txt" placeholder="optional..."></textarea>
+      <label class="text-danger" *ngIf="memeService.editMeme.get('txt').touched && memeService.editMeme.get('txt').errors?.minlength">Minimum 20 characters required</label>
+    </div>
+
+    <img class="uplImg" src="{{meme?.byteHead}},{{meme?.byteImg}}">
+
+    
+        
+        
+    <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2" style="padding-top: 10px;">
+            <button type="submit" class="btn btn-lg btn-block" [disabled]="!memeService.editMeme.valid">Save</button>
+        </div>
+    </div>
+</form>
+
+</div>
+</div>
+</div>

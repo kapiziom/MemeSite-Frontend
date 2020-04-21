@@ -1,3 +1,12 @@
+.uplImg {
+    max-width: 100%;
+    width: 750px;
+    border: 4px solid grey;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .wrapped-upload-div {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;

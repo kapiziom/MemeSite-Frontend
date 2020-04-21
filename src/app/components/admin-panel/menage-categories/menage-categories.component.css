@@ -1,4 +1,11 @@
-.adminLabel {
+  @media only screen and (max-width: 620px) {
+    div.tab-header h2 {
+        font-size: 10px;
+    }
+    
+  }
+
+.categoriesLabel {
     text-align: center;
     justify-content: center;
     color: #545d6a;
@@ -6,13 +13,11 @@
     font-size: 30px;
 }
 
-.wrapped-admin-div {
+.wrapped-categories-div {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: #2e3137;
-    padding: 30px;
-    width: 90%;
-    max-width: 1000px;
+    background: #303238;
+    width: 100%;
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);

@@ -1,12 +1,17 @@
 <div class="container content">
     <div class="row">
-        
-        <div class="col-md-8">
+        <div class="categoriesNav">
+            <app-categories></app-categories>
+        </div>
+        <div id="middle">
             <div id="content" *ngFor="let item of memeList; let i = index">
-                <div id="test" style="display: inline;">
-                    <a *ngIf="item.userName != 'admin'" id="ref" href="profile/{{item.userName}}">{{item.userName}}</a>
-                    <p *ngIf="item.userName == 'admin'" style="display: inline;">{{item.userName}}</p>
-                    <p style="display: inline; padding-left: 5px;"> - {{item.creationDate}}</p>
+
+                <div class="wrapper-content">
+                    <div class="wrapped-content-div">
+
+                <div class="ImgHeader">
+                    <a id="ref-user" href="profile/{{item.userName}}">{{item.userName}}</a>
+                    <p style="display: inline; padding-left: 5px; color: whitesmoke; font-size: 10px;"> - {{item.creationDate}}</p>
                     <div *ngIf="userService.IsLoggedIn()" style="float: right;">
                         <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(item.memeId)">
                     </div>
@@ -17,22 +22,23 @@
                         <img class="responsive" *ngIf="item.byteHead != null" src="{{item.byteHead}},{{item.byteImg}}">
                     </div>
                 </a>
-                <div>
-                    <p>Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
+
+                <div class="ImgFooter">
+                    <p >Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
                         <a id="ref" href="category/{{item.category.categoryName}}/1">{{item.category.categoryName}}</a> </p>
                 </div>
-
-                <app-vote [memeDetails]="memeList[i]" [ShowArchive]="false" [ShowAccept]="false"></app-vote>
+                
+                <app-vote class="buttons" [memeDetails]="memeList[i]"></app-vote>
 
             </div>
-            
-            <app-paginator [pageNumber]="PageNumber" [pageCount]="pagecount"></app-paginator>
+        </div>
+    </div>
+    
+                <app-paginator [pageNumber]="PageNumber" [pageCount]="pagecount"></app-paginator>
 
         </div>
-
-        <div class="col-md-4">
-            <app-categories></app-categories>
+        <div class="rightSide" style="background-color: grey; max-width: 300px; width: 100%;">
+            3/3
         </div>
-        
     </div>
 </div>

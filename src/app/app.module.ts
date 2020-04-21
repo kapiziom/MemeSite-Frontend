@@ -32,7 +32,14 @@ import { VoteComponent } from './components/vote_buttons/vote.component';
 import { ProfileService } from './core/services/profile.service';
 import { UsersCommentsComponent } from './components/check-user/users-comments/users-comments.component';
 import { UsersContentComponent } from './components/check-user/users-content/users-content.component';
-
+import { EditMemeComponent } from './components/edit-meme/edit-meme.component';
+import { AccSettingsComponent } from './components/acc-settings/acc-settings.component';
+import { ChangeEmailComponent } from './components/acc-settings/change-email/change-email.component';
+import { ChangePasswordComponent } from './components/acc-settings/change-password/change-password.component';
+import { ListUsersComponent } from './components/admin-panel/list-users/list-users.component';
+import { MenageCategoriesComponent } from './components/admin-panel/menage-categories/menage-categories.component';
+import { AddCategoryComponent } from './components/admin-panel/menage-categories/add-category/add-category.component';
+import { GroupEditCategoryComponent } from './components/admin-panel/menage-categories/group-edit-category/group-edit-category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +60,15 @@ import { UsersContentComponent } from './components/check-user/users-content/use
     PaginatorComponent,
     VoteComponent,
     UsersCommentsComponent,
-    UsersContentComponent
+    UsersContentComponent,
+    EditMemeComponent,
+    AccSettingsComponent,
+    ChangeEmailComponent,
+    ChangePasswordComponent,
+    ListUsersComponent,
+    MenageCategoriesComponent,
+    AddCategoryComponent,
+    GroupEditCategoryComponent
   ],
   imports: [
     BrowserModule,

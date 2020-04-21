@@ -13,6 +13,14 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ByCategoryComponent } from './components/by-category/by-category.component';
 import { CheckUserComponent } from './components/check-user/check-user.component';
+import { EditMemeComponent } from './components/edit-meme/edit-meme.component';
+import { AccSettingsComponent } from './components/acc-settings/acc-settings.component';
+import { ChangeEmailComponent } from './components/acc-settings/change-email/change-email.component';
+import { ChangePasswordComponent } from './components/acc-settings/change-password/change-password.component';
+import { ListUsersComponent } from './components/admin-panel/list-users/list-users.component';
+import { MenageCategoriesComponent } from './components/admin-panel/menage-categories/menage-categories.component';
+import { AddCategoryComponent } from './components/admin-panel/menage-categories/add-category/add-category.component';
+import { GroupEditCategoryComponent } from './components/admin-panel/menage-categories/group-edit-category/group-edit-category.component';
 
 
 const routes: Routes = [
@@ -22,12 +30,24 @@ const routes: Routes = [
   {path: 'unaccepted/:id' , component: UnacceptedComponent },
   {path: 'details/:id' , component: DetailsComponent },
   {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
-  {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']} },
+  {path: 'edit/:id', component: EditMemeComponent, canActivate:[AuthGuard] },
+  {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']}, children: [
+    {path: 'users', component: ListUsersComponent },
+    {path: 'menagecategories', component: MenageCategoriesComponent, children: [
+      {path: 'addcategory', component: AddCategoryComponent },
+      {path: 'categories', component: GroupEditCategoryComponent, }
+    ]},
+  ]},
   {path: 'profile/:username' , component: CheckUserComponent },
   {path: 'user', component: UserComponent,
   children: [
     {path: 'registration', component: RegistrationComponent },
     {path: 'login', component: LoginComponent}
+  ]},
+  {path: 'settings', component: AccSettingsComponent, canActivate:[AuthGuard],
+  children: [
+    {path: 'email', component: ChangeEmailComponent},
+    {path: 'password', component: ChangePasswordComponent},
   ]},
   {path: 'forbidden', component: ForbiddenComponent },
   {path: '' , redirectTo:'/main/1', pathMatch:'prefix' },

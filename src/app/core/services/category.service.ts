@@ -12,7 +12,7 @@ export class CategoryService {
   readonly BaseURI = 'https://localhost:44312/api';
 
   category = this.fb.group({
-    categoryName : ['',[Validators.required]],
+    categoryName : ['',[Validators.required, Validators.maxLength(14)]],
   });
 
   getCategories(){
