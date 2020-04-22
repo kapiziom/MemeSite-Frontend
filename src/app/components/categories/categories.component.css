@@ -12,8 +12,8 @@
 
 @media only screen and (max-width: 992px) {
   #categories {
-    border: 2px solid hotpink;
     padding: 0;
+    margin-bottom: 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #2e3137;

@@ -39,21 +39,8 @@
             <button type="submit" class="btn btn-lg btn-block" (click)="loadMoreContent()" [disabled]="!canLoadMoreContent">LOAD MORE</button>
 
         </div>
-        <div class="col-md-4 d-none d-lg-block d-xl-block" style="background-color: grey;">
-            
-            <div class="userstats">
-                <h2 id="username">{{stats?.userName}}</h2>
-                <p class="values">main page/total: {{stats?.totalAccepted}}/{{stats?.totalMemes}}</p>
-                <p class="values">comments: {{stats?.totalComments}}</p>
-                <p class="values">{{stats?.joined}}</p>
-                
-            </div>
-
-            Acc Settings
-            <div>
-                <a href="/settings"><button id="settings" type="submit" (click)="GoSettings()" class="btn btn-lg btn-block">Settings</button></a>
-            </div>
-
+        <div class="rightSide">
+            <app-current-user-stats></app-current-user-stats>
         </div>
     </div>
 </div>

@@ -23,10 +23,7 @@ export class MainpageComponent implements OnInit {
 
   constructor(public userService: UserService,
               private memeService: MemeService,
-              private router: Router,
-              private categoryService: CategoryService,
-              private voteService: VoteService,
-              private toastr: ToastrService) { 
+              private router: Router) { 
     this.config = {
       currentPage: 1,
       itemsPerPage: 2,

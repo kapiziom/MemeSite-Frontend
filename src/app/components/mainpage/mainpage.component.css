@@ -2,7 +2,6 @@
 @media only screen and (min-width: 992px) {
   
   #middle {
-    border: 2px solid yellow;
     max-width: 650px;
     width: 100%;
     margin-left: 20px;
@@ -17,7 +16,7 @@
     justify-content: center;
     width: 100%;
     max-width: 800px;
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
   }
   .buttons {
     width: 100%;
@@ -32,14 +31,12 @@
 
 @media only screen and (max-width: 992px) {
   .container {
-    border: 2px solid hotpink;
     width: 100%;
     max-width: 900px;
     margin-left: 0px;
     margin-right: 0px;
   }
   .row {
-    border: 2px solid orange;
     display: table;
     width:106%;
   }
@@ -48,7 +45,6 @@
   }
   
   #middle {
-    border: 2px solid yellow;
     margin-left: auto;
     margin-right: auto;
     display: table-footer-group;
@@ -60,12 +56,7 @@
     justify-content: center;
     margin-bottom: 100px;
   }
-  .rightSide {
-    width: 0;
-    display: none;
-  }
   .wrapper-content {
-    border: 2px solid red;
     margin-left: auto;
     margin-right: auto;
     align-items: center;
@@ -77,25 +68,37 @@
   }
   
   .wrapped-content-div {
-    border: 2px solid yellow;
     margin-left: auto;
     margin-right: auto;
     max-width: 900px;
     width: 100%;
   }
-
-    
-.buttons {
-  width: 100%;
-    max-width: 800px;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
+  .buttons {
+    width: 100%;
+      max-width: 800px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .container{
+    width: 100%;
+    margin-left: 1%;
+  }
+  .rightSide {
+    max-width: 300px;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .rightSide {
+    max-width: 0px;
+    display: none;
+  }
 }
 
-}
 
 .categoriesNav {
   min-width: 230px;

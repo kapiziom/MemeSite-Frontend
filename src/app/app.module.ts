@@ -40,6 +40,7 @@ import { ListUsersComponent } from './components/admin-panel/list-users/list-use
 import { MenageCategoriesComponent } from './components/admin-panel/menage-categories/menage-categories.component';
 import { AddCategoryComponent } from './components/admin-panel/menage-categories/add-category/add-category.component';
 import { GroupEditCategoryComponent } from './components/admin-panel/menage-categories/group-edit-category/group-edit-category.component';
+import { CurrentUserStatsComponent } from './components/current-user-stats/current-user-stats.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,8 @@ import { GroupEditCategoryComponent } from './components/admin-panel/menage-cate
     ListUsersComponent,
     MenageCategoriesComponent,
     AddCategoryComponent,
-    GroupEditCategoryComponent
+    GroupEditCategoryComponent,
+    CurrentUserStatsComponent
   ],
   imports: [
     BrowserModule,
