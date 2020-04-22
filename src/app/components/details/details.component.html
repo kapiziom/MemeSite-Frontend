@@ -1,35 +1,42 @@
-<div class="container details">
-    <div class="row">
-
-        <div class="col-md-2">
+<div class="container content" style="border: 2px solid blue;">
+    <div class="row" style="border: 2px solid purple;">
+        <div class="categoriesNav">
             <app-categories></app-categories>
         </div>
+        <div id="middle" style="border: 2px solid yellow;">
 
-        <div class="col-md-7">
-            <div id="content">
-                <div id="test" style="display: inline;">
-                    <a *ngIf="!(memeDetails?.userName == 'admin')" id="ref" href="profile/{{memeDetails?.userName}}">{{memeDetails?.userName}}</a>
-                    <p *ngIf="memeDetails?.userName == 'admin'" style="display: inline;">{{memeDetails.userName}}</p>
-                    <p style="display: inline; padding-left: 5px;"> - {{memeDetails?.creationDate}}</p>
-                    <div *ngIf="userService.IsLoggedIn()" style="float: right;">
-                        <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(memeDetails.memeId)">
+            <p id="detailsHead" style="border: 2px solid yellow;">Details</p>
+
+            <div class="wrapper-content" style="border: 2px solid red;">
+                <div class="wrapped-content-div" style="border: 2px solid hotpink;">
+
+                    <div class="ImgHeader">
+                        <a id="ref-user" href="profile/{{memeDetails?.userName}}">{{memeDetails?.userName}}</a>
+                        <p style="display: inline; padding-left: 5px; color: whitesmoke; font-size: 10px;"> - {{memeDetails?.creationDate}}</p>
+                        <div *ngIf="userService.IsLoggedIn()" style="float: right;">
+                            <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(memeDetails?.memeId)">
+                        </div>
                     </div>
-                </div>
-                    <h2 style="color: black; word-wrap: break-word" >{{memeDetails?.title}}</h2>
-                    <div>
-                        <img class="responsive" *ngIf="memeDetails?.byteHead != null" src="{{memeDetails.byteHead}},{{memeDetails.byteImg}}">
+                    <h5 id="titleDetails" >{{memeDetails?.title}}</h5>
+                    
+                    <p id="txtDetails" *ngIf="memeDetails?.txt">{{memeDetails?.txt}}</p>
+
+                    <div >
+                        <img class="responsive" *ngIf="memeDetails?.byteHead != null" src="{{memeDetails?.byteHead}},{{memeDetails?.byteImg}}">
                     </div>
-                
-                <div style="margin-bottom: 16px;">
-                    <p style="display: inline;">Rate: {{memeDetails?.rate}} - Comments: {{memeDetails?.commentCount}} - Category: 
-                        <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a>
-                    </p>
-                    <p class="memeDelete" (click)="OnDeleteMeme()" *ngIf="userService.getUserId() == memeDetails?.userId || userService.CheckRoleStaff()=='Administrator'">DELETE</p>
-                    <a class="memeEdit" href="edit/{{memeDetails?.memeId}}" *ngIf="userService.getUserId() == memeDetails?.userId">edit</a>
+                    
+
+                    <div class="ImgFooter" style="border: 2px solid white;">
+                        <p style="display: inline;">Rate: {{memeDetails?.rate}} - Comments: {{memeDetails?.commentCount}} - Category: 
+                            <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a>
+                        </p>
+                        <a class="memeDelete" href="" (click)="OnDeleteMeme()" *ngIf="userService.getUserId() == memeDetails?.userId || userService.CheckRoleStaff()=='Administrator'">DELETE</a>
+                        <a class="memeEdit" href="edit/{{memeDetails?.memeId}}" *ngIf="userService.getUserId() == memeDetails?.userId">EDIT</a>
+                    </div>
+                    
+                    <app-vote class="buttons" [memeDetails]="memeDetails"></app-vote>
+
                 </div>
-
-                <app-vote [memeDetails]="memeDetails"></app-vote>
-
             </div>
 
             <div class="comments">
@@ -85,12 +92,11 @@
 
                 </div>
             </div>
+            
 
         </div>
-        <div class="col-md-3 d-none d-lg-block d-xl-block" style="background-color: grey;">
-            3/3
+        <div class="rightSide">
+            <app-current-user-stats></app-current-user-stats>
         </div>
     </div>
 </div>
-
-

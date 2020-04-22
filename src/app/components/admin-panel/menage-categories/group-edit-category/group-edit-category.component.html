@@ -1,7 +1,7 @@
 
 <form >
     <div *ngFor="let item of categories; let i = index" style="text-align: center; color: #545d6a; font-size: 30px;">
-        <b >{{item.categoryId}}. {{item.categoryName}}</b><br>
+        <b id="ListedCategory" >{{item.categoryId}}. {{item.categoryName}}</b><br>
         <div style="margin-bottom: 10px;">
             <button id="BEdit"  (click)="OnEdit(i)" class="btn btn-lg">Edit</button>
             <button id="BDelete" (click)="OnDelete(i, item.categoryId)" class="btn btn-lg">Delete</button>

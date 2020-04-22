@@ -219,22 +219,64 @@ img.responsive {
   color: blue;
 }
 
-.memeDelete {
-  float: right;
-  cursor: pointer;
-  color: red;
-}
+
 
 .memeDelete:hover {
   color: darkred;
-}
-
-.memeEdit {
-  float: right;
-  margin-right: 10px;
-  color: blue;
+  text-decoration: underline;
+  background-color: black;
 }
 
 .memeEdit:hover {
-  color: darkblue;
+  color: white;
+  background-color: black;
+}
+
+@media only screen and (min-width: 620px) {
+  .memeEdit {
+    font-weight: 500;
+    float: right;
+    margin-right: 10px;
+    color: grey;
+    text-align: center;
+    border-radius: 5px;
+    max-width: 90px;
+    width: 100%;
+  }
+  .memeDelete {
+    font-weight: 500;
+    float: right;
+    margin-right: 10px;
+    color: grey;
+    text-align: center;
+    border-radius: 5px;
+    max-width: 90px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .memeEdit {
+    font-size: 12px;
+    font-weight: 500;
+    float: right;
+    margin-right: 3px;
+    color: grey;
+    text-align: center;
+    border-radius: 5px;
+    max-width: 50px;
+    width: 100%;
+    margin-top: 3px;
+  }
+  .memeDelete {
+    font-size: 12px;
+    font-weight: 500;
+    float: right;
+    color: grey;
+    text-align: center;
+    border-radius: 5px;
+    max-width: 50px;
+    width: 100%;
+    margin-top: 3px;
+  }
 }

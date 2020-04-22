@@ -1,3 +1,14 @@
+@media only screen and (max-width: 620px) {
+  #ListedCategory {
+    display: block;
+    max-width: 400px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+}
+
 #BDelete {
     margin-left: 5px;
     background-color: darkred;
@@ -7,12 +18,20 @@
     width: 120px;
 }
 
+#BDelete:hover {
+  background-color: red;
+}
+
 #BEdit {
     background-color: darkgreen;
     color: #fff;
     border-radius: 5px;
     height: 50px;
     width: 120px;
+}
+
+#BEdit:hover {
+  background-color: green;
 }
 
 #updateButton {
@@ -39,3 +58,4 @@
   #cancelButton:hover {
     background-color: grey;
   }
+

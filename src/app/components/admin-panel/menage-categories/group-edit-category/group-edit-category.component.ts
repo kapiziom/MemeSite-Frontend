@@ -68,7 +68,7 @@ export class GroupEditCategoryComponent implements OnInit {
 
   SaveEdit(i, categoryId){
     if(this.categoryService.category.value.categoryName ==  this.categories[i]['categoryName']){
-      this.toastr.error('There is no changes', 'not success');
+      this.toastr.error('There are no changes', 'not success');
       this.categoryService.category.reset();
       this.isEdit = null;
     }
