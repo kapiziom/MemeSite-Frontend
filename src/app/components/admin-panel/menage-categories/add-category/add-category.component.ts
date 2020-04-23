@@ -17,7 +17,6 @@ export class AddCategoryComponent implements OnInit {
   onSubmit(){
     this.service.postCategory().subscribe(
       (res:any) => {
-        console.log(res);
         this.service.category.reset();
         this.toastr.success('New category created');
       },

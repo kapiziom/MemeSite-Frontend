@@ -38,14 +38,12 @@ export class CheckUserComponent implements OnInit {
     this.src = this.router.url;
     const route = this.src.split('/');
     this.userName = route[2];
-    console.log(this.userName);
   }
 
   getUserStats(){
     this.profileService.GetUserStats(this.userName).subscribe(
       (res : any) =>{
         this.stats = res;
-        console.log(this.stats);
       },
       err =>{
         console.log(err);

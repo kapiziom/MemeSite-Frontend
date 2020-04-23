@@ -24,7 +24,6 @@ export class CurrentUserStatsComponent implements OnInit {
     this.profileService.GetUserStats(this.userService.getUserName()).subscribe(
       (res : any) =>{
         this.stats = res;
-        console.log(this.stats);
       },
       err =>{
         console.log(err);

@@ -50,7 +50,6 @@ export class DetailsComponent implements OnInit {
           this.router.navigateByUrl('/404');
         }
         this.memeDetails = res;
-        console.log(this.memeDetails);
       },
       err =>{
         console.log(err);
@@ -114,7 +113,6 @@ export class DetailsComponent implements OnInit {
   }
 
   addFavourite(number: number){
-    console.log(number);
     console.log('addfavourite works');
   }
 //section comments

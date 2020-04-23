@@ -29,7 +29,6 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserContentOnInit(this.PageNumber);
-    console.log(this.usersList);
   }
 
   getUserContentOnInit(PageNumber){

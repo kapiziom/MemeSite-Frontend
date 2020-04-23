@@ -50,7 +50,6 @@ export class UnacceptedComponent implements OnInit {
         }
         this.memeList = res['items'];
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
-        console.log(this.memeList);
       },
       err =>{
         console.log(err);
@@ -82,7 +81,6 @@ export class UnacceptedComponent implements OnInit {
   }
 
   addFavourite(number: number){
-    console.log(number);
     console.log('addfavourite works');
   }
 

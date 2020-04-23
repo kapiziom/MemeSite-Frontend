@@ -51,9 +51,6 @@ export class ByCategoryComponent implements OnInit {
     this.memeService.getCategoryPagedContent(this.category, pageNumber, this.config.itemsPerPage).subscribe(
       (res : any) =>{
         this.pagecount = res['pageCount'];
-        // if(this.PageNumber > this.pagecount){
-        //   this.router.navigateByUrl('/404');
-        // }
         this.memeList = res['items'];
         this.config.totalItems = res['totalItems'];
       },
@@ -87,7 +84,6 @@ export class ByCategoryComponent implements OnInit {
   }
 
   addFavourite(number: number){
-    console.log(number);
     console.log('addfavourite works');
   }
 

@@ -62,8 +62,6 @@ export class GroupEditCategoryComponent implements OnInit {
     this.categoryService.category.setValue({
       categoryName : this.categories[i]['categoryName'],
     });
-    console.log(this.categoryService.category.value.categoryName);
-    console.log(i);
   }
 
   SaveEdit(i, categoryId){

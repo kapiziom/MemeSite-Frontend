@@ -43,7 +43,6 @@ export class UsersContentComponent implements OnInit {
       this.src = this.router.url;
       const route = this.src.split('/');
       this.userName = route[2];
-      console.log(this.userName);
     }
   
     
@@ -108,7 +107,6 @@ export class UsersContentComponent implements OnInit {
     }
   
     addFavourite(number: number){
-      console.log(number);
       console.log('addfavourite works');
     }
 }

@@ -178,12 +178,12 @@ img.responsive {
   display: inline-block;
   padding-left: 2.5%;
   text-decoration: none;
-  color: lightblue;
+  color: gray;
 }
 
 #ref-user:hover {
   text-decoration: underline;
-  color: blue;
+  color: lightblue;
 }
 
 
