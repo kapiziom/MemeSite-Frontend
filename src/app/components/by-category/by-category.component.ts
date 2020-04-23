@@ -20,7 +20,8 @@ export class ByCategoryComponent implements OnInit {
   memeList = new Array<any>();
   pagecount;
   categories;
-  
+
+  isDelete: number = null;  
 
   constructor(private router: Router,
               public userService: UserService,
@@ -59,6 +60,29 @@ export class ByCategoryComponent implements OnInit {
       err =>{
         console.log(err);
       },
+    );
+  }
+
+  onDelete(i){
+    if(this.isDelete != i){
+      this.isDelete = i;
+    }
+    else this.isDelete = null;
+  }
+  CancelDelete(){
+    this.isDelete = null;
+  }
+
+  OnDeleteMeme(id){
+    this.memeService.delete(id).subscribe(
+      (res:any) => {
+        window.location.reload();
+        this.toastr.success('delete successful', 'success');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('something went wrong', 'not success');
+      }
     );
   }
 

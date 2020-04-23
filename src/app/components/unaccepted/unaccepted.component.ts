@@ -18,6 +18,8 @@ export class UnacceptedComponent implements OnInit {
   pagecount;
   categories;
 
+  isDelete: number = null;
+
   PageNumber = this.router.url.match(/\d+/)[0];
 
   constructor(public userService: UserService,
@@ -53,6 +55,29 @@ export class UnacceptedComponent implements OnInit {
       err =>{
         console.log(err);
       },
+    );
+  }
+
+  onDelete(i){
+    if(this.isDelete != i){
+      this.isDelete = i;
+    }
+    else this.isDelete = null;
+  }
+  CancelDelete(){
+    this.isDelete = null;
+  }
+
+  OnDeleteMeme(id){
+    this.memeService.delete(id).subscribe(
+      (res:any) => {
+        window.location.reload();
+        this.toastr.success('delete successful', 'success');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('something went wrong', 'not success');
+      }
     );
   }
 

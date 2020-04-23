@@ -21,7 +21,12 @@ export class DetailsComponent implements OnInit {
   comments;
   commentValue: string;
 
+  popoverTitle: string = "DELETE";
+  popoverMessage: string = "Are you sure?";
+  isOpen: boolean;
+
   isEdit: number = null;
+  isDelete: number = null;
 
   constructor(private memeService: MemeService,
     private categoryService: CategoryService,
@@ -34,6 +39,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getMeme(this.MemeID);
     this.getComments(this.MemeID);
+    
+    console.log(this.router.url);
   }
 //section - meme
   getMeme(MemeID){
@@ -137,12 +144,18 @@ export class DetailsComponent implements OnInit {
   }
 
   OnEdit(i){
-    this.isEdit = i;
-    this.commentService.editComment.setValue({
-      txt : this.comments[i]['txt'],
-    });
-    console.log(this.commentService.editComment.value.txt);
-    console.log(i);
+    this.isDelete = null;
+    if(this.isEdit != i){
+      this.isEdit = i;
+      this.commentService.editComment.setValue({
+        txt : this.comments[i]['txt'],
+      });
+    }
+    else{
+      this.commentService.editComment.reset();
+      this.isEdit = null;
+    }
+    
   }
 
   SaveEdit(i, commentId){
@@ -174,9 +187,22 @@ export class DetailsComponent implements OnInit {
     this.isEdit = null;
   }
 
+  CancelDelete(){
+    this.isDelete = null;
+  }
+
+  BeforeDelete(i){
+    this.isEdit = null;
+    if(this.isDelete != i){
+      this.isDelete = i;
+    }
+    else this.isDelete = null;
+  }
+
   OnDelete(i, commentId){
     this.commentService.deleteComment(commentId).subscribe(
       (res:any) => {
+        this.isDelete = null;
         this.comments.splice(i, 1);
         this.toastr.success('comment deleted', 'success');
       },
@@ -186,6 +212,8 @@ export class DetailsComponent implements OnInit {
       }
     );
   }
+
+  //future
 
   OnReply(){
 

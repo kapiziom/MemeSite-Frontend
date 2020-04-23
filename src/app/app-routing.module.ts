@@ -21,6 +21,8 @@ import { ListUsersComponent } from './components/admin-panel/list-users/list-use
 import { MenageCategoriesComponent } from './components/admin-panel/menage-categories/menage-categories.component';
 import { AddCategoryComponent } from './components/admin-panel/menage-categories/add-category/add-category.component';
 import { GroupEditCategoryComponent } from './components/admin-panel/menage-categories/group-edit-category/group-edit-category.component';
+import { UsersContentComponent } from './components/check-user/users-content/users-content.component';
+import { UsersCommentsComponent } from './components/check-user/users-comments/users-comments.component';
 
 
 const routes: Routes = [
@@ -32,13 +34,16 @@ const routes: Routes = [
   {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
   {path: 'edit/:id', component: EditMemeComponent, canActivate:[AuthGuard] },
   {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']}, children: [
-    {path: 'users', component: ListUsersComponent },
+    {path: 'users/:page', component: ListUsersComponent },
     {path: 'menagecategories', component: MenageCategoriesComponent, children: [
       {path: 'addcategory', component: AddCategoryComponent },
       {path: 'categories', component: GroupEditCategoryComponent, }
     ]},
   ]},
-  {path: 'profile/:username' , component: CheckUserComponent },
+  {path: 'profile/:username' , component: CheckUserComponent, children: [
+    {path: 'memes', component: UsersContentComponent },
+    {path: 'comments', component: UsersCommentsComponent}
+  ]},
   {path: 'user', component: UserComponent,
   children: [
     {path: 'registration', component: RegistrationComponent },

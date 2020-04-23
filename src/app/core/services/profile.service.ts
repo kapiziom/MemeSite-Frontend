@@ -21,7 +21,12 @@ export class ProfileService {
     return this.http.get(this.BaseURI+'/User/CurrentUserStats');
   }
 
+  GetUsersForAdmin(page: number, itemsPerPage: number){
+    return this.http.get(this.BaseURI+'/User/ListUsersForAdmin/' + page + '/' + itemsPerPage);
+  }
+
   GetUserContent(userName: string, page: number, itemsPerPage: number){
     return this.http.get(this.BaseURI+'/Meme/UserContent/'+ userName + '/' + page + '/' + itemsPerPage);
   }
+
 }

@@ -20,15 +20,19 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     localStorage.removeItem('token');
-    this.router.navigateByUrl('/main/1').then(() => {
-      window.location.reload();
-    });
+    this.router.navigateByUrl('/main/1');
   }
 
   onProfile(){
-    this.router.navigateByUrl('/profile/'+ this.service.getUserName()).then(() => {
-      window.location.reload();
-    });
+    const route = this.router.url.split('/');
+    if(route[1] == "profile"){
+      this.router.navigateByUrl('/profile/'+ this.service.getUserName()).then(() => {
+        window.location.reload();
+      });
+    }
+    else {
+      this.router.navigateByUrl('/profile/'+ this.service.getUserName());
+    }
   }
 
   SignIn(){

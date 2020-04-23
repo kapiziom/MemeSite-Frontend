@@ -23,8 +23,8 @@ export class CommentService {
     return this.http.get(this.BaseURI +'/Comment/ListForMeme/' + memeId);
   }
 
-  getCommentsForUser(userName: string){
-    return this.http.get(this.BaseURI +'/Comment/ListForUser/' + userName);
+  GetUserComments(userName: string, page: number, itemsPerPage: number){
+    return this.http.get(this.BaseURI+'/Comment/PagedListForUser/'+ userName + '/' + page + '/' + itemsPerPage);
   }
 
   postComment(memeId){

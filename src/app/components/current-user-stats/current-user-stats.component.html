@@ -1,7 +1,6 @@
-<div class="wrapped-stats-div">
-            
+<div class="wrapped-stats-div" *ngIf="userService.IsLoggedIn()">
     <div class="userstats">
-        <a id="profileRefLink" href="/profile/{{stats?.userName}}"><h2 id="username">{{stats?.userName}}</h2></a>
+        <a id="profileRefLink" href="/profile/{{stats?.userName}}"><p id="username">{{stats?.userName}}</p></a>
         <p class="material-icons">collections</p>
         <p class="values">main page/total: {{stats?.totalAccepted}}/{{stats?.totalMemes}}</p><br>
         <p class="material-icons">comment</p>
@@ -9,10 +8,7 @@
         <p class="material-icons">date_range</p>
         <p class="values">{{stats?.joined}}</p>
     </div>
-
     <div>
         <a href="/settings"><button id="settings" type="submit" (click)="GoSettings()" class="btn btn-lg">Account Settings</button></a>
     </div>
-
-
 </div>

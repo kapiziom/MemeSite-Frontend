@@ -8,8 +8,8 @@
     <div class="form-group required">
       <label>Category</label><br>
       <select formControlName="categoryId" class="form-control">
-          <option *ngFor="let item of categories" [ngValue]="item.categoryId">
-              {{item.categoryId}}. {{item.categoryName}}
+          <option *ngFor="let item of categories; let i = index" [ngValue]="item.categoryId">
+            {{i+1}}. {{item.categoryName}}
           </option>
       </select>
       <label class="text-danger" *ngIf="memeService.editMeme.get('categoryId').touched && memeService.editMeme.get('categoryId').errors?.required">Category required</label>

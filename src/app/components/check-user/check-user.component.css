@@ -1,22 +1,99 @@
+
+
 .userstats {
-    border: 2px solid grey;
-    border-radius: 15px;
+    margin-left: 5px;
 }
 
 #username {
-    margin-left: 40px;
+    text-align: center;
     color: #545d6a;
     font-weight: 700;
 }
+.material-icons {
+    margin-left: 5px;
+    padding-top: 10px;
+    color: whitesmoke;
+}
 
 .values {
-    margin-left: 25px;
+    display: inline;
+    color: black;
+    margin-left: 5px;
     font-size: 30px;
 }
 
-#settings {
-    background-color: darkgreen;
-}
-#settings:hover {
-    background-color: green;
-}
+
+
+
+.wrapped-checkuser-div {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #2e3137;
+    padding: 30px;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+
+@media only screen and (min-width: 768px) {
+  
+  .wrapperCheckUser {
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+  }
+  .wrapped-stats-div {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #2e3137;
+    width: 95%;
+    position: relative;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+    #right{
+        padding: 0;
+    }
+  }
+@media only screen and (max-width: 768px) {
+  .col-md-7{
+    padding: 0;
+  }
+  .container {
+    padding: 0;
+  }
+  .wrapperCheckUser {
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    padding-top: 20px;
+  }
+  .wrapped-stats-div {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #2e3137;
+    width: 99%;
+    position: relative;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+    #right{
+        display: none;
+    }
+  }

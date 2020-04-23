@@ -19,11 +19,14 @@ export class MainpageComponent implements OnInit {
   pagecount;
   categories;
 
+  isDelete: number = null;
+
   PageNumber = this.router.url.match(/\d+/)[0];
 
   constructor(public userService: UserService,
               private memeService: MemeService,
-              private router: Router) { 
+              private router: Router,
+              private toastr: ToastrService) { 
     this.config = {
       currentPage: 1,
       itemsPerPage: 2,
@@ -38,14 +41,11 @@ export class MainpageComponent implements OnInit {
   getContent(pageNumber){
     this.memeService.getPagedContent(pageNumber, this.config.itemsPerPage).subscribe(
       (res : any) =>{
-        console.log(res);
         this.pagecount = res['pageCount'];
         if(this.PageNumber > this.pagecount){
           this.router.navigateByUrl('/404');
         }
         this.memeList = res['items'];
-        console.log(this.pagecount);
-        console.log(this.memeList);
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
       },
       err =>{
@@ -54,8 +54,30 @@ export class MainpageComponent implements OnInit {
     );
   }
 
+  onDelete(i){
+    if(this.isDelete != i){
+      this.isDelete = i;
+    }
+    else this.isDelete = null;
+  }
+  CancelDelete(){
+    this.isDelete = null;
+  }
+
+  OnDeleteMeme(id){
+    this.memeService.delete(id).subscribe(
+      (res:any) => {
+        window.location.reload();
+        this.toastr.success('delete successful', 'success');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('something went wrong', 'not success');
+      }
+    );
+  }
+
   addFavourite(number: number){
-    console.log(number);
     console.log('addfavourite works');
   }
 

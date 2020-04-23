@@ -1,1 +1,16 @@
-<p>list-users works!</p>
+<div id="content" *ngFor="let item of usersList; let i = index">
+    <div class="wrapper-content">
+        <div class="wrapped-content-div">
+            <p style="color: whitesmoke;">
+                {{item.userName}}
+                {{item.email}}
+                {{item.creationDate}}
+                {{item.memeCount}}
+                {{item.commentCount}}
+                {{item.userRole}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<app-paginator [pageNumber]="PageNumber" [pageCount]="pagecount"></app-paginator>

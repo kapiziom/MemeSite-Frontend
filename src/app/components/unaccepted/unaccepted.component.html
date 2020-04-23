@@ -4,6 +4,7 @@
             <app-categories></app-categories>
         </div>
         <div id="middle">
+            <p id="contentHead">UNACCEPTED</p>
             <div id="content" *ngFor="let item of memeList; let i = index">
 
                 <div class="wrapper-content">
@@ -24,8 +25,22 @@
                 </a>
 
                 <div class="ImgFooter">
-                    <p >Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
-                        <a id="ref" href="category/{{item.category.categoryName}}/1">{{item.category.categoryName}}</a> </p>
+                    <p style="display: inline;">Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
+                        <a id="ref" href="category/{{item.category.categoryName}}/1">{{item.category.categoryName}}</a>
+                    </p>
+                    <a class="memeDelete2"
+                    *ngIf="userService.getUserId() == item.userId || userService.CheckRoleStaff()=='Administrator'"
+                    style="color: red;" (click)="onDelete(i)">
+                        DELETE
+                    </a>
+                    <a class="memeEdit" href="edit/{{item.memeId}}" *ngIf="userService.getUserId() == item.userId">EDIT</a>
+                    <div id="confirmDelete-wrap" *ngIf="isDelete == i">
+                        <div id="confirmDelete">
+                            <p>Are you sure?</p>
+                            <button class="btn btn-light" (click)="CancelDelete()">Cancel</button>
+                            <button class="btn btn-danger" (click)="OnDeleteMeme(item.memeId)">Delete</button>
+                        </div>
+                    </div>
                 </div>
                 
                 <app-vote class="buttons" [memeDetails]="memeList[i]"></app-vote>

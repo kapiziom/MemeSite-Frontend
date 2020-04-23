@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './core/services/user.service';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -78,6 +79,11 @@ import { CurrentUserStatsComponent } from './components/current-user-stats/curre
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger',
+      closeOnOutsideClick: true,
+      popoverClass: 'CustomPopover',
+    }),
     ToastrModule.forRoot({
       progressBar: true,
       positionClass: 'toast-bottom-right',

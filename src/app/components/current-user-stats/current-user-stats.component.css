@@ -11,14 +11,14 @@
   }
 
 .userstats {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 #username {
-    color: black;
     text-align: center;
     color: #545d6a;
     font-weight: 700;
+    font-size: 18px;
 }
 .material-icons {
     padding-top: 10px;

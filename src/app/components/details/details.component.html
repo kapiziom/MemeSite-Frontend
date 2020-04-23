@@ -1,14 +1,14 @@
-<div class="container content" style="border: 2px solid blue;">
-    <div class="row" style="border: 2px solid purple;">
+<div class="container content">
+    <div class="row">
         <div class="categoriesNav">
             <app-categories></app-categories>
         </div>
-        <div id="middle" style="border: 2px solid yellow;">
+        <div id="middle">
 
-            <p id="detailsHead" style="border: 2px solid yellow;">Details</p>
+            <p id="contentHead">DETAILS</p>
 
-            <div class="wrapper-content" style="border: 2px solid red;">
-                <div class="wrapped-content-div" style="border: 2px solid hotpink;">
+            <div class="wrapper-content">
+                <div class="wrapped-content-div">
 
                     <div class="ImgHeader">
                         <a id="ref-user" href="profile/{{memeDetails?.userName}}">{{memeDetails?.userName}}</a>
@@ -26,11 +26,21 @@
                     </div>
                     
 
-                    <div class="ImgFooter" style="border: 2px solid white;">
+                    <div class="ImgFooter">
                         <p style="display: inline;">Rate: {{memeDetails?.rate}} - Comments: {{memeDetails?.commentCount}} - Category: 
                             <a id="ref" href="category/{{memeDetails?.category.categoryName}}/1">{{memeDetails?.category.categoryName}}</a>
                         </p>
-                        <a class="memeDelete" href="" (click)="OnDeleteMeme()" *ngIf="userService.getUserId() == memeDetails?.userId || userService.CheckRoleStaff()=='Administrator'">DELETE</a>
+                        <a [ngClass]="isOpen ? 'memeDelete': 'memeDelete2'" 
+                    *ngIf="userService.getUserId() == memeDetails?.userId || userService.CheckRoleStaff()=='Administrator'"
+                    style="color: red;"
+                    mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage"
+                    placement="left"
+                    (confirm)="OnDeleteMeme()"
+                    [(isOpen)]="isOpen">
+                        DELETE
+                    </a>
                         <a class="memeEdit" href="edit/{{memeDetails?.memeId}}" *ngIf="userService.getUserId() == memeDetails?.userId">EDIT</a>
                     </div>
                     
@@ -52,27 +62,41 @@
                                 <label class="text-danger" *ngIf="commentService.addComment.get('txt').touched && commentService.addComment.get('txt').errors?.required">txt required</label>
                             </div>
                         </div> 
-                        <button id="addbutton" type="submit" class="btn btn-lg" [disabled]="!commentService.addComment.valid">Add</button>  
+                        <button id="addbutton" type="submit" class="btn btn-lg" [disabled]="!commentService.addComment.valid">Add comment</button>  
                     </form>
 
                     <div>
-                        <label class="commentList">COMMENTS:</label>
+                        <label class="commentList">NEWEST COMMENTS:</label>
                         <div *ngFor="let item of comments; let i = index">
                             <div class="perComment">
                                 <div class="comment-header">
-                                    <a style="display: inline;" *ngIf="item.userName != 'admin'" id="ref" href="profile/{{item.userName}}">{{item.userName}}</a>
-                                    <p style="display: inline;" *ngIf="item.userName == 'admin'">{{item.userName}}</p>
-                                    <p style="display: inline;"> - {{item.creationDate}}</p>
-                                    <p *ngIf="item.editDate" style="display: inline;"> - Last edit: {{item.editDate}}</p>
+                                    <div id="commInfo">
+                                        <a id="ref-username" href="profile/{{item.userName}}">{{item.userName}}</a>
+                                        <p id="creationDate"> - {{item.creationDate}}</p>
+                                        
+                                        <p *ngIf="userService.getUserName() == item.userName || userService.CheckRoleStaff()=='Administrator'"
+                                        class="comDel"
+                                        style="color: red;"
+                                        (click)="BeforeDelete(i)">
+                                            DELETE
+                                        </p>
+                                        
+                                        <p *ngIf="userService.getUserName() == item.userName" class="comment-edit" (click)="OnEdit(i)">edit</p><br>
+                                        <!--<p class="comment-other" (click)="OnReport()">Report</p>
+                                         <p style="float: right; margin-right: 10px;"> - </p>
+                                        <p class="comment-other" (click)="OnReply()">Reply</p> -->
+                                        <div id="confirmDelete-wrap" *ngIf="isDelete == i">
+                                            <div id="confirmDelete">
+                                                <p>Are you sure?</p>
+                                                <button class="btn btn-light" (click)="CancelDelete()">Cancel</button>
+                                                <button class="btn btn-danger" (click)="OnDelete(i, item.commentId)">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     
-                                    <p *ngIf="userService.getUserName() == item.userName" class="comment-edit" (click)="OnEdit(i)">edit</p>
-                                    <p *ngIf="userService.getUserName() == item.userName || userService.CheckRoleStaff()=='Administrator'" class="comment-other" (click)="OnDelete(i, item.commentId)">delete</p>
-                                    <!--<p class="comment-other" (click)="OnReport()">Report</p>
-                                     <p style="float: right; margin-right: 10px;"> - </p>
-                                    <p class="comment-other" (click)="OnReply()">Reply</p> -->
                                     
                                 </div>
-                                <div>
+                                <div id="commentPlace">
                                     <form *ngIf="isEdit == i" id="addcomment" class="container" [formGroup]="commentService.editComment" autocomplete="off" (submit)="SaveEdit(i, item.commentId)">
                                             <div class="form-group required col-md-12">
                                                 <textarea id="updatecommenttxt" class="form-control" formControlName="txt">{{item.txt}}</textarea>

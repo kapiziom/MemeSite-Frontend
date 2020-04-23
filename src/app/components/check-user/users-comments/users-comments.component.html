@@ -1,1 +1,39 @@
-<p>users-comments works!</p>
+<div class="comments">
+    <div>
+        <label class="commentList">NEWEST {{userName}}'s COMMENTS:</label>
+        <div *ngFor="let item of commentList; let i = index">
+            <div class="perComment">
+                <div class="comment-header">
+                    <div id="commInfo">
+                        <a id="ref-username" href="profile/{{item.userName}}">{{item.userName}}</a>
+                        <p id="creationDate"> - {{item.creationDate}}</p>
+                        
+                        <p *ngIf="userService.getUserName() == item.userName || userService.CheckRoleStaff()=='Administrator'"
+                        class="comDel"
+                        style="color: red;"
+                        (click)="BeforeDelete(i)">
+                            DELETE
+                        </p>
+                        <br>
+                        <!--<p class="comment-other" (click)="OnReport()">Report</p>
+                         <p style="float: right; margin-right: 10px;"> - </p>
+                        <p class="comment-other" (click)="OnReply()">Reply</p> -->
+                        <div id="confirmDelete-wrap" *ngIf="isDelete == i">
+                            <div id="confirmDelete">
+                                <p>Are you sure?</p>
+                                <button class="btn btn-light" (click)="CancelDelete()">Cancel</button>
+                                <button class="btn btn-danger" (click)="OnDelete(i, item.commentId)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="commentPlace">
+                    <p class="comment-text">{{item.txt}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--LOAD MORE-->
+<button id="checkUserLoadMore" class="btn btn-secondary btn-block" (click)="loadMoreContent()" [disabled]="!canLoadMoreContent">LOAD MORE</button>

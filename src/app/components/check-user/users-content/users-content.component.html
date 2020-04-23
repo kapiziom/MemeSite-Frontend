@@ -1,1 +1,46 @@
-<p>users-content works!</p>
+<label class="memeList">NEWEST {{userName}}'s MEMES:</label>
+<div id="content" *ngFor="let item of memeList; let i = index">
+    <div class="wrapper-content">
+        <div class="wrapped-content-div">
+            <div class="ImgHeader">
+                <div id="isArchived" *ngIf="item.isArchived">
+                    <p>ARCHIVED</p>
+                </div>
+                <a id="ref-user" href="profile/{{item.userName}}">{{item.userName}}</a>
+                <p style="display: inline; padding-left: 5px; color: whitesmoke; font-size: 10px;"> - {{item.creationDate}}</p>
+                <div *ngIf="userService.IsLoggedIn()" style="float: right;">
+                    <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(item.memeId)">
+                </div>
+            </div>
+            <a href="details/{{item.memeId}}" style="text-decoration: none;">
+                <h2 id="title" >{{item.title}}</h2>
+                <div >
+                    <img class="responsive" *ngIf="item.byteHead != null" src="{{item.byteHead}},{{item.byteImg}}">
+                </div>
+            </a>
+            <div class="ImgFooter">
+                <p style="display: inline;">Rate: {{item.rate}} - Comments: {{item.commentCount}} - Category: 
+                    <a id="ref" href="category/{{item.category.categoryName}}/1">{{item.category.categoryName}}</a>
+                </p>
+                <a class="memeDelete2"
+                    *ngIf="userService.getUserId() == item.userId || userService.CheckRoleStaff()=='Administrator'"
+                    style="color: red;" (click)="onDelete(i)">
+                    DELETE
+                </a>
+                <a class="memeEdit" href="edit/{{item.memeId}}" *ngIf="userService.getUserId() == item.userId">EDIT</a>
+                <div id="confirmDelete-wrap" *ngIf="isDelete == i">
+                    <div id="confirmDelete">
+                        <p>Are you sure?</p>
+                        <button class="btn btn-light" (click)="CancelDelete()">Cancel</button>
+                        <button class="btn btn-danger" (click)="OnDeleteMeme(item.memeId)">Delete</button>
+                    </div>
+                </div>
+            </div>
+                
+            <app-vote class="buttons" [memeDetails]="memeList[i]"></app-vote>
+
+        </div>
+    </div>
+</div>    
+<!--LOAD MORE-->
+<button id="checkUserLoadMore" class="btn btn-secondary btn-block" (click)="loadMoreContent()" [disabled]="!canLoadMoreContent">LOAD MORE</button>
