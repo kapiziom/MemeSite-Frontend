@@ -69,12 +69,29 @@ export class MemeService {
     return this.http.get(this.BaseURI+'/Meme/unAccepted/'+page+'/'+items);
   }
 
+  getFavourites(page: number, items: number){
+    return this.http.get(this.BaseURI+'/Meme/UsersFavourites/'+page+'/'+items);
+  }
+
   changeAcceptanceStatus(value: boolean, memeId: number){
     return this.http.put(this.BaseURI+'/Meme/ChangeAccpetanceStatus/' + memeId + '/' + value, null);
   }
 
   changeArchiveStatus(value: boolean, memeId: number){
     return this.http.put(this.BaseURI+'/Meme/ChangeArchiveStatus/' + memeId + '/' + value, null);
+  }
+
+  addFavourite(userId, memeId){
+    var body = {
+      userId: userId,
+      memeId: memeId,
+    };
+    console.log(body);
+    return this.http.post(this.BaseURI+'/Favourite/AddFavourite/', body);
+  }
+
+  deleteFavourite(memeId){
+    return this.http.delete(this.BaseURI+'/Favourite/DeleteFromFavourite/' + memeId);
   }
 
 

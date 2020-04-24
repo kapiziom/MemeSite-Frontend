@@ -19,6 +19,7 @@
                   <div class="tab-header">
                     <h2 routerLink='/profile/{{userName}}/memes' routerLinkActive='active'>Memes</h2>
                     <h2 routerLink='/profile/{{userName}}/comments' routerLinkActive='active'>Comments</h2>
+                    <h2 *ngIf="currentUserName == userName" routerLink='/profile/{{userName}}/favourites' routerLinkActive='active'>Favourites</h2>
                   </div>
                   <div class="row">
                     <div class="col-md-10 offset-md-1">

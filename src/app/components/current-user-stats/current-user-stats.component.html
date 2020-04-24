@@ -9,6 +9,7 @@
         <p class="values">{{stats?.joined}}</p>
     </div>
     <div>
+        <a href="/profile/{{stats?.userName}}/favourites"><button id="settings" type="submit" class="btn btn-lg">My Favourites({{stats?.favouritesCount}})</button></a>
         <a href="/settings"><button id="settings" type="submit" (click)="GoSettings()" class="btn btn-lg">Account Settings</button></a>
     </div>
 </div>

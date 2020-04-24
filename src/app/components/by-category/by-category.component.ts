@@ -83,8 +83,4 @@ export class ByCategoryComponent implements OnInit {
     );
   }
 
-  addFavourite(number: number){
-    console.log('addfavourite works');
-  }
-
 }

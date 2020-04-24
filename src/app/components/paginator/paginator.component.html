@@ -1,7 +1,7 @@
 <div class="container" style="margin-top: 30px;">
     <div class="row">
-        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}/1" *ngIf="!(pageNumber == '1')">first_page</a>
-        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}/{{pageNumber-1}}" *ngIf="!(pageNumber == '1')">navigate_before</a>
+        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}1" *ngIf="!(pageNumber == '1')">first_page</a>
+        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}{{pageNumber-1}}" *ngIf="!(pageNumber == '1')">navigate_before</a>
 
         <button class="btn btn-lg pageChange material-icons" (click)="pageChange('first')" [disabled]="pageNumber == '1'" *ngIf="pageNumber == '1'">first_page</button>
         <button class="btn btn-lg pageChange material-icons" (click)="pageChange('prev')" [disabled]="pageNumber == '1'" *ngIf="pageNumber == '1'">navigate_before</button>
@@ -12,7 +12,7 @@
         <button class="btn btn-lg pageChange material-icons" (click)="pageChange('last')" [disabled]="pageNumber == pageCount" *ngIf="pageNumber == pageCount">last_page</button>
 
         
-        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}/{{nextPage}}" *ngIf="!(pageNumber == pageCount)">navigate_next</a>
-        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}/{{pageCount}}" *ngIf="!(pageNumber == pageCount)">last_page</a>
+        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}{{nextPage}}" *ngIf="!(pageNumber == pageCount)">navigate_next</a>
+        <a class="btn btn-lg material-icons pageChange" href="http://localhost:4200{{routewithoutPage}}{{pageCount}}" *ngIf="!(pageNumber == pageCount)">last_page</a>
     </div>
 </div>

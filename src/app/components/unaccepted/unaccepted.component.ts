@@ -80,9 +80,5 @@ export class UnacceptedComponent implements OnInit {
     );
   }
 
-  addFavourite(number: number){
-    console.log('addfavourite works');
-  }
-
 
 }

@@ -24,16 +24,26 @@ export class PaginatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.routewithoutPage = '/' + this.activatedRoute.snapshot.url[0].path;
-    for (var _i = 1; _i < this.activatedRoute.snapshot.url.length-1; _i++) {
-      this.routewithoutPage = this.routewithoutPage + '/' + this.activatedRoute.snapshot.url[_i].path;
-    }
+    // this.routewithoutPage = '/' + this.activatedRoute.snapshot.url[0].path;
+    // for (var _i = 1; _i < this.activatedRoute.snapshot.url.length-1; _i++) {
+    //   this.routewithoutPage = this.routewithoutPage + '/' + this.activatedRoute.snapshot.url[_i].path;
+    // }
+    this.getRouteWithoutPageNumber();
     this.nextPage += parseInt(this.pageNumber);
+  }
+
+  getRouteWithoutPageNumber(){
+    const route = this.router.url.split('/');
+    this.routewithoutPage = '/';
+    for (var _i = 1; _i < route.length-1; _i++) {
+      this.routewithoutPage = this.routewithoutPage  + route[_i] + '/';
+    }
+    return this.routewithoutPage;
   }
 
   pageChange(newPage){
     if(newPage == 'first'){
-      this.router.navigateByUrl(this.routewithoutPage+ '/' +'1')
+      this.router.navigateByUrl(this.routewithoutPage + '1')
         .then(() => {
           window.location.reload();
         });
@@ -41,7 +51,7 @@ export class PaginatorComponent implements OnInit {
     if(newPage == 'prev'){
       var numberValue = Number(this.pageNumber);
       numberValue -= 1;
-      this.router.navigateByUrl(this.routewithoutPage+ '/' +numberValue)
+      this.router.navigateByUrl(this.routewithoutPage + numberValue)
         .then(() => {
           window.location.reload();
         });
@@ -49,13 +59,13 @@ export class PaginatorComponent implements OnInit {
     if(newPage == 'next'){
       var numberValue = Number(this.pageNumber);
       numberValue += 1;
-      this.router.navigateByUrl(this.routewithoutPage+ '/' +numberValue)
+      this.router.navigateByUrl(this.routewithoutPage + numberValue)
         .then(() => {
           window.location.reload();
         });
     }
     if(newPage == 'last'){
-      this.router.navigateByUrl(this.routewithoutPage+ '/' +this.pageCount)
+      this.router.navigateByUrl(this.routewithoutPage + this.pageCount)
         .then(() => {
           window.location.reload();
         });

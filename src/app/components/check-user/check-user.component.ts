@@ -11,6 +11,7 @@ import { ProfileService } from 'src/app/core/services/profile.service';
 export class CheckUserComponent implements OnInit {
 
   userName: string;
+  currentUserName: string;
   src: string;
   stats: any;
   config: any;
@@ -32,6 +33,7 @@ export class CheckUserComponent implements OnInit {
     this.getUserName();
     this.getUserStats();
     this.getUserContentOnInit();
+    this.currentUserName = this.userService.getUserName();
   }
 
   getUserName(){

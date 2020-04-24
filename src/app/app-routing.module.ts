@@ -23,6 +23,7 @@ import { AddCategoryComponent } from './components/admin-panel/menage-categories
 import { GroupEditCategoryComponent } from './components/admin-panel/menage-categories/group-edit-category/group-edit-category.component';
 import { UsersContentComponent } from './components/check-user/users-content/users-content.component';
 import { UsersCommentsComponent } from './components/check-user/users-comments/users-comments.component';
+import { FavouritesComponent } from './components/check-user/favourites/favourites.component';
 
 
 const routes: Routes = [
@@ -42,7 +43,8 @@ const routes: Routes = [
   ]},
   {path: 'profile/:username' , component: CheckUserComponent, children: [
     {path: 'memes', component: UsersContentComponent },
-    {path: 'comments', component: UsersCommentsComponent}
+    {path: 'comments', component: UsersCommentsComponent},
+    {path: 'favourites', component: FavouritesComponent}
   ]},
   {path: 'user', component: UserComponent,
   children: [

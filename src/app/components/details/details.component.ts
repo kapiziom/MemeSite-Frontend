@@ -39,8 +39,6 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getMeme(this.MemeID);
     this.getComments(this.MemeID);
-    
-    console.log(this.router.url);
   }
 //section - meme
   getMeme(MemeID){
@@ -112,9 +110,6 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-  addFavourite(number: number){
-    console.log('addfavourite works');
-  }
 //section comments
   getComments(meme_id){
     this.commentService.getCommentsForMeme(meme_id).subscribe(

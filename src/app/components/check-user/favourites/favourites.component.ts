@@ -6,11 +6,11 @@ import { MemeService } from 'src/app/core/services/meme.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-users-content',
-  templateUrl: './users-content.component.html',
-  styleUrls: ['./users-content.component.css']
+  selector: 'app-favourites',
+  templateUrl: './favourites.component.html',
+  styleUrls: ['./favourites.component.css']
 })
-export class UsersContentComponent implements OnInit {
+export class FavouritesComponent implements OnInit {
 
   userName: string;
   src: string;
@@ -24,7 +24,6 @@ export class UsersContentComponent implements OnInit {
 
   constructor(private router: Router,
     public userService: UserService,
-    private profileService: ProfileService,
     private memeService: MemeService,
     private toastr: ToastrService) {
       this.config = {
@@ -36,6 +35,7 @@ export class UsersContentComponent implements OnInit {
 
      ngOnInit(): void {
       this.getUserName();
+      this.checkUser();
       this.getUserContentOnInit();
     }
   
@@ -45,10 +45,14 @@ export class UsersContentComponent implements OnInit {
       this.userName = route[2];
     }
   
+    checkUser(){
+      if(this.userName != this.userService.getUserName()){
+        this.router.navigateByUrl('forbidden');
+      }
+    }
     
-  
     getUserContentOnInit(){
-      this.profileService.GetUserContent(this.userName, this.config.currentPage, this.config.itemsPerPage).subscribe(
+      this.memeService.getFavourites(this.config.currentPage, this.config.itemsPerPage).subscribe(
         (res : any) =>{
           this.pagecount = res['pageCount'];
           this.memeList = res['items'];
@@ -60,11 +64,11 @@ export class UsersContentComponent implements OnInit {
         },
       );
     }
-  
+
     loadMoreContent(){
       this.canLoadMore();
       this.config.currentPage = this.config.currentPage + 1;
-      this.profileService.GetUserContent(this.userName, this.config.currentPage, this.config.itemsPerPage).subscribe(
+      this.memeService.getFavourites(this.config.currentPage, this.config.itemsPerPage).subscribe(
         (res : any) =>{
           res['items'].forEach(element => {
             this.memeList.push(element);
@@ -105,5 +109,5 @@ export class UsersContentComponent implements OnInit {
         }
       );
     }
-    
+
 }

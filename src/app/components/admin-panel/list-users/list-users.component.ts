@@ -22,7 +22,7 @@ export class ListUsersComponent implements OnInit {
     private toastr: ToastrService) {
       this.config = {
         currentPage: 1,
-        itemsPerPage: 20,
+        itemsPerPage: 2,
         totalItems:0
         };
      }

@@ -77,8 +77,4 @@ export class MainpageComponent implements OnInit {
     );
   }
 
-  addFavourite(number: number){
-    console.log('addfavourite works');
-  }
-
 }

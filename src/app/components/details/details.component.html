@@ -14,7 +14,7 @@
                         <a id="ref-user" href="profile/{{memeDetails?.userName}}">{{memeDetails?.userName}}</a>
                         <p style="display: inline; padding-left: 5px; color: whitesmoke; font-size: 10px;"> - {{memeDetails?.creationDate}}</p>
                         <div *ngIf="userService.IsLoggedIn()" style="float: right;">
-                            <img type="submit" src="assets/icons/f02.png" (click)="addFavourite(memeDetails?.memeId)">
+                            <app-add-favourite [memeDetails]="memeDetails"></app-add-favourite>
                         </div>
                     </div>
                     <h5 id="titleDetails" >{{memeDetails?.title}}</h5>
