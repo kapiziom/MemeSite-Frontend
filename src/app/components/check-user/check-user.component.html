@@ -1,10 +1,31 @@
-<div class="container content">
+<div class="container">
     <div class="row">
         
         <div class="col-md-7">
             <div class="wrapped-stats-div">
+              <div id="forAdmin" *ngIf="userService.roleMatch(['Administrator']) && (currentUserName != userName)">
+                <button id="ban" type="submit" class="btn btn-lg"
+                    *ngIf="stats?.userRole != 'Banned'"
+                    mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle1"
+                    [popoverMessage]="popoverMessage1"
+                    placement="left"
+                    (confirm)="OnBan(stats?.userId)">
+                        BAN USER
+                    </button>
+                <button id="unban" type="submit" class="btn btn-lg"
+                    *ngIf="stats?.userRole == 'Banned'"
+                    mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle2"
+                    [popoverMessage]="popoverMessage2"
+                    placement="left"
+                    (confirm)="OnUnban(stats?.userId)">
+                        UNBAN
+                    </button>
+              </div>
                 <div class="userstats">
-                    <h1 id="username">{{stats?.userName}}</h1>
+                    <h1 *ngIf="stats?.userRole != 'Banned'" id="username">{{stats?.userName}}</h1>
+                    <h1 *ngIf="stats?.userRole == 'Banned'" id="usernameB">{{stats?.userName}}</h1>
                     <p class="material-icons">collections</p>
                     <p class="values">main page/total: {{stats?.totalAccepted}}/{{stats?.totalMemes}}</p><br>
                     <p class="material-icons">comment</p>

@@ -40,6 +40,16 @@
     background-color: gray;
 }
 
+#favourites {
+    background-color: black;
+    margin-bottom: 1px;
+    border-radius: 10px;
+    width: 100%;
+}
+#favourites:hover {
+    background-color: gray;
+}
+
 #profileRefLink:hover {
     text-decoration: underline whitesmoke;
 }

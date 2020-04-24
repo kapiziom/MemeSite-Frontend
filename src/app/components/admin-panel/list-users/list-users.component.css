@@ -5,6 +5,8 @@
     justify-content: center;
     width: 100%;
     max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0px 20px 20px 20px;
   }
 
@@ -18,4 +20,61 @@
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+
+  #userInfo p {
+    padding-left: 5%;
+  }
+
+  #ban {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    min-width: 100px;
+    border-radius: 10px;
+  }
+  #unban {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    min-width: 100px;
+    border-radius: 10px;
+  }
+  #ban:hover{
+    background-color: gray;
+  }
+  #unban:hover{
+    background-color: gray;
+  }
+
+  #confirmDelete-wrap {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    height: 80px;
+  }
+  
+  #confirmDelete {
+    background-color: #5f6674;
+    border-radius: 5px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-shadow: 20px 20px 20px 20px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+  }
+  
+  #confirmDelete p {
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  #confirmDelete button {
+    width: 50%;
+    height: 35px;
   }

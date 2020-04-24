@@ -15,6 +15,9 @@ export class ListUsersComponent implements OnInit {
   usersList = new Array<any>();
   pagecount;
   PageNumber = this.router.url.match(/\d+/)[0];
+  currentUserName: string;
+  isSetRole:number = null;
+  status:string = null;
   
   constructor(private router: Router,
     public userService: UserService,
@@ -29,6 +32,7 @@ export class ListUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserContentOnInit(this.PageNumber);
+    this.currentUserName = this.userService.getUserName();
   }
 
   getUserContentOnInit(PageNumber){
@@ -37,6 +41,48 @@ export class ListUsersComponent implements OnInit {
         this.pagecount = res['pageCount'];
         this.usersList = res['items'];
         this.config.totalItems = this.pagecount*this.config.itemsPerPage;
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
+
+  setRole(i, setStatus){
+    if(this.isSetRole != i){
+      this.isSetRole = i;
+      this.status = setStatus;
+    }
+    else this.CancelSetRole();
+  }
+  
+  CancelSetRole(){
+    this.isSetRole = null;
+    this.status = null;
+  }
+
+  OnBan(i){
+    this.isSetRole = null;
+    this.status = null;
+    this.userService.setRole(this.usersList[i]['userId'], 'Banned').subscribe(
+      (res : any) =>{
+        console.log(res);
+        this.usersList[i]['userRole'] = 'Banned'
+        this.toastr.success('user banned');
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
+
+  OnUnban(i){
+    this.isSetRole = null;
+    this.status = null;
+    this.userService.setRole(this.usersList[i]['userId'], 'NormalUser').subscribe(
+      (res : any) =>{
+        this.usersList[i]['userRole'] = 'NormalUser'
+        this.toastr.success('user unbanned');
       },
       err =>{
         console.log(err);

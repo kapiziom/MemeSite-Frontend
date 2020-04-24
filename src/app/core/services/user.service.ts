@@ -61,6 +61,15 @@ export class UserService {
     return this.http.put(this.BaseURI+'/Account/ChangeEmail',formData);
   }
 
+  setRole(userId, role){
+    var body = {
+      UserId: userId,
+      Role: role,
+    };
+    console.log(body);
+    return this.http.put(this.BaseURI+'/Account/SetRole' , body);
+  }
+
   changePassword(){
     var body = {
       OldPassword: this.ChangePassword.value.CurrentPassword,

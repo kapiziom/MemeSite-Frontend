@@ -32,8 +32,8 @@ const routes: Routes = [
   {path: '404' , component: NotFoundComponent },
   {path: 'unaccepted/:id' , component: UnacceptedComponent },
   {path: 'details/:id' , component: DetailsComponent },
-  {path: 'upload', component: UploadComponent, canActivate:[AuthGuard] },
-  {path: 'edit/:id', component: EditMemeComponent, canActivate:[AuthGuard] },
+  {path: 'upload', component: UploadComponent, canActivate:[AuthGuard], data: {permittedRoles:['NormalUser', 'Administrator']} },
+  {path: 'edit/:id', component: EditMemeComponent, canActivate:[AuthGuard], data: {permittedRoles:['NormalUser', 'Administrator']} },
   {path: 'adminpanel', component: AdminPanelComponent, canActivate:[AuthGuard], data: {permittedRoles:['Administrator']}, children: [
     {path: 'users/:page', component: ListUsersComponent },
     {path: 'menagecategories', component: MenageCategoriesComponent, children: [

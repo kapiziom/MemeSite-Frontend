@@ -1,14 +1,43 @@
 <div id="content" *ngFor="let item of usersList; let i = index">
     <div class="wrapper-content">
         <div class="wrapped-content-div">
-            <p style="color: whitesmoke;">
-                <a id="ref-user" href="profile/{{item.userName}}">{{item.userName}}</a>
-                {{item.email}}
-                {{item.creationDate}}
-                {{item.memeCount}}
-                {{item.commentCount}}
-                {{item.userRole}}
-            </p>
+            <div class="row" style="width: 100%; margin-left: auto; margin-right: auto;">
+                <div id="userInfo" class="col-md-7" style="color: whitesmoke;">
+                    <a id="ref-user" href="profile/{{item.userName}}">{{item.userName}}</a><br>
+                    <p>Email: {{item.email}}</p>
+                    <p>Joined: {{item.creationDate}}</p>
+                    <p>Memes: {{item.memeCount}}</p>
+                    <p>Comments: {{item.commentCount}}</p>
+                    <p>UserRole: {{item.userRole}}</p>
+                </div>
+                <div class="col-md-5" *ngIf="currentUserName != item.userName">
+                    <button id="ban" type="submit" class="btn btn-lg"
+                    *ngIf="item.userRole != 'Banned'"
+                    (click)="setRole(i, 'ban')">
+                        BAN USER
+                    </button>
+                    <button id="unban" type="submit" class="btn btn-lg"
+                    *ngIf="item.userRole == 'Banned'"
+                    (click)="setRole(i, 'unban')">
+                        UNBAN USER
+                    </button>
+                    
+                    <div id="confirmDelete-wrap" *ngIf="isSetRole == i && status == 'ban'">
+                        <div id="confirmDelete">
+                            <p>Are you sure?</p>
+                            <button class="btn btn-light" (click)="CancelSetRole()">Cancel</button>
+                            <button class="btn btn-danger" (click)="OnBan(i)">BAN USER</button>
+                        </div>
+                    </div>
+                    <div id="confirmDelete-wrap" *ngIf="isSetRole == i && status == 'unban'">
+                        <div id="confirmDelete">
+                            <p>Are you sure?</p>
+                            <button class="btn btn-light" (click)="CancelSetRole()">Cancel</button>
+                            <button class="btn btn-danger" (click)="OnUnban(i)">UNBAN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -53,7 +53,7 @@
                 <div *ngIf="!userService.IsLoggedIn()">
                     <a href="user/login">Sign in to see comments</a>
                 </div>
-                <div *ngIf="userService.IsLoggedIn()">
+                <div *ngIf="userService.IsLoggedIn() && userService.roleMatch(['Administrator', 'NormalUser'])">
                     <form id="addcomment" class="container" [formGroup]="commentService.addComment" autocomplete="off" (submit)="OnSubmit()">
                         <div class="row" >
                             <div class="form-group required col-md-12">

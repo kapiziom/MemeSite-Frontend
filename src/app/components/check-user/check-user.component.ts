@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { ProfileService } from 'src/app/core/services/profile.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-check-user',
@@ -19,7 +20,13 @@ export class CheckUserComponent implements OnInit {
   pagecount;
   canLoadMoreContent: boolean = true;
 
+  popoverTitle1: string = "BAN USER";
+  popoverMessage1: string = "Are you sure?";
+  popoverTitle2: string = "UNBAN USER";
+  popoverMessage2: string = "Are you sure?";
+
   constructor(private router: Router,
+    private toastr: ToastrService,
     public userService: UserService,
     private profileService: ProfileService) {
       this.config = {
@@ -93,8 +100,29 @@ export class CheckUserComponent implements OnInit {
     this.router.navigateByUrl('/settings');
   }
 
-  addFavourite(memeId: Number){
+  OnBan(userId){
+    console.log(userId);
+    this.userService.setRole(userId, 'Banned').subscribe(
+      (res : any) =>{
+        this.stats['userRole'] = 'Banned'
+        this.toastr.success('user banned');
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+  }
 
+  OnUnban(userId){
+    this.userService.setRole(userId, 'NormalUser').subscribe(
+      (res : any) =>{
+        this.stats['userRole'] = 'NormalUser'
+        this.toastr.success('user unbanned');
+      },
+      err =>{
+        console.log(err);
+      },
+    );
   }
 
 }
