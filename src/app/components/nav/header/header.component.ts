@@ -6,7 +6,7 @@ import { AuthGuard } from '../../../core/auth/auth.guard';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: []
+  styles: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 

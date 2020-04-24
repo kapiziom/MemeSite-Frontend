@@ -1,7 +1,5 @@
 body{
-    /* background-color: whitesmoke; */
     background-color: rgb(80, 77, 77);
-    /* background-color: grey; */
 }
 
 .CustomPopover {
@@ -10,10 +8,36 @@ body{
   box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3);
 }
 
-#navtxt {
-  border-radius: 5px;
-  height: 43px;
-  max-height: 100%;
+
+@media only screen and (min-width: 576px) {
+  #navtxt {
+      border-radius: 5px;
+      height: 43px;
+      max-height: 100%;
+      text-align: center;
+    }
+  #noLoggedInButton {
+    margin: 0;
+    }
+}
+@media only screen and (max-width: 576px) {
+  #navtxt {
+      border-radius: 5px;
+      height: 43px;
+      max-height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    #noLoggedInButton {
+      width: 100%;
+    }
+    #logOutButton {
+      width: 100%;
+    }
+    #yprofile {
+      width: 100%;
+    }
 }
 
 .nav-link:hover {

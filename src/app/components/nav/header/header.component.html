@@ -24,28 +24,17 @@
                     <a id="navtxt" routerLink="/adminpanel" class="nav-link text-white" *ngIf="service.CheckRoleStaff()=='Administrator'">Admin Panel</a>
                   </li>
 
-                  <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown link
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li> -->
-
                   <li class="nav-item">
                     <button id="yprofile" class="nav-link btn btn-light" style="margin-right: 5px;" (click)="onProfile()" *ngIf="service.IsLoggedIn()">Your Profile!</button>
                   </li>
                   <li>
-                    <button class="nav-link btn btn-danger my-2 my-sm-0 text-white"  (click)="onLogout()" *ngIf="service.IsLoggedIn()">Logout</button>
+                    <button id="logOutButton" class="nav-link btn btn-danger my-2 my-sm-0 text-white"  (click)="onLogout()" *ngIf="service.IsLoggedIn()">Logout</button>
                   </li>
                   <li>
-                    <button class="btn btn-danger my-2 my-sm-0" style="margin-right: 5px;" (click)="SignIn()" *ngIf="!service.IsLoggedIn()">Sign In</button>
+                    <button id="noLoggedInButton" class="btn btn-danger my-2 my-sm-0" style="margin-right: 5px;" (click)="SignIn()" *ngIf="!service.IsLoggedIn()">Sign In</button>
                   </li>
                   <li>
-                    <button class="btn btn-danger my-2 my-sm-0" (click)="SignUp()" *ngIf="!service.IsLoggedIn()">Sign Up</button>
+                    <button id="noLoggedInButton" class="btn btn-danger my-2 my-sm-0" (click)="SignUp()" *ngIf="!service.IsLoggedIn()">Sign Up</button>
                   </li>
                 </ul>
         </div>
