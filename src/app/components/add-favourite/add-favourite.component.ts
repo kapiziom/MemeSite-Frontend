@@ -15,15 +15,12 @@ export class AddFavouriteComponent implements OnInit {
 
   constructor(private toastr: ToastrService,
     public userService: UserService,
-    private memeService: MemeService,
-    private router: Router) { }
+    private memeService: MemeService) { }
 
   ngOnInit(): void {
   }
 
   addFavourite(){
-    console.log(this.memeDetails['isFavourite']);
-    console.log(this.memeDetails);
     if(this.memeDetails['isFavourite'] == false){
       this.memeService.addFavourite(this.userService.getUserId(), this.memeDetails['memeId']).subscribe(
         (res:any) => {
