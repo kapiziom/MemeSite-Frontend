@@ -35,7 +35,6 @@ export class MemeService {
       byteHead: imgByteHead,
       fileByte: imageBytes,      
     };
-    console.log(body);
     return this.http.post(this.BaseURI+'/Meme', body);
   }
 
@@ -45,7 +44,6 @@ export class MemeService {
       txt: this.editMeme.value.txt,
       categoryId: this.editMeme.value.categoryId,
     };
-    console.log(body);
     return this.http.put(this.BaseURI+'/Meme/' + memeId, body);
   }
 
@@ -86,7 +84,6 @@ export class MemeService {
       userId: userId,
       memeId: memeId,
     };
-    console.log(body);
     return this.http.post(this.BaseURI+'/Favourite/AddFavourite/', body);
   }
 

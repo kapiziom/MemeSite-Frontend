@@ -3,8 +3,6 @@ import { HttpEventType, HttpClient, HttpResponse } from '@angular/common/http';
 import { MemeService } from 'src/app/core/services/meme.service';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
  
 @Component({
   selector: 'app-upload',

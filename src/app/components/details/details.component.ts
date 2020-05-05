@@ -125,8 +125,10 @@ export class DetailsComponent implements OnInit {
   OnSubmit(){
     this.commentService.postComment(this.MemeID).subscribe(
       (res:any) => {
+        console.log(res);
         this.commentService.addComment.reset();
         this.comments.splice(0, 0, res); 
+        this.memeDetails['commentCount'] += 1;
         this.toastr.success('New comment added', 'success');
       },
       err => {
@@ -160,6 +162,7 @@ export class DetailsComponent implements OnInit {
     else{
       this.commentService.putComment(commentId).subscribe(
         (res:any) => {
+          console.log(res);
           this.isEdit = null;
           this.comments[i] = res;
           this.commentService.editComment.reset();
@@ -197,6 +200,7 @@ export class DetailsComponent implements OnInit {
       (res:any) => {
         this.isDelete = null;
         this.comments.splice(i, 1);
+        this.memeDetails['commentCount'] -= 1;
         this.toastr.success('comment deleted', 'success');
       },
       err => {

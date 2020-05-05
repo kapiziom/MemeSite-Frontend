@@ -26,8 +26,6 @@ export class ByCategoryComponent implements OnInit {
   constructor(private router: Router,
               public userService: UserService,
               private memeService: MemeService,
-              private categoryService: CategoryService,
-              private voteService: VoteService,
               private toastr: ToastrService) {
                 this.config = {
                   currentPage: 1,
@@ -37,14 +35,15 @@ export class ByCategoryComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.getCategoryName();
+    this.getCategoryNameAndPageNumber();
     this.getContent(this.PageNumber);
   }
 
-  getCategoryName(){
+  getCategoryNameAndPageNumber(){
     this.src = this.router.url;
     const route = this.src.split('/');
     this.category = route[2];
+    this.PageNumber = route[3];
   }
 
   getContent(pageNumber){

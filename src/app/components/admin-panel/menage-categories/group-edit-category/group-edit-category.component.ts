@@ -43,20 +43,6 @@ export class GroupEditCategoryComponent implements OnInit {
     );
   }
 
-  onSubmit(id){
-    this.categoryService.putCategory(id).subscribe(
-      (res:any) => {
-        this.categoryService.category.reset();
-        this.toastr.success('edited', 'Edit successful');
-        this.getCategories();
-      },
-      err => {
-        this.toastr.error(':(', 'bad');
-        console.log(err);
-      }
-    );
-  }
-
   OnEdit(i){
     this.isEdit = i;
     this.categoryService.category.setValue({
@@ -82,7 +68,10 @@ export class GroupEditCategoryComponent implements OnInit {
           console.log(err);
           this.isEdit = null;
           this.categoryService.category.reset();
-          this.toastr.error(err['error']['error'], 'not success');
+          if(err['error']['statusCode'] == 409){
+            this.toastr.error(err['error']['message']);
+          }
+          else this.toastr.error(err['error']['error'], 'not success');
         }
       );
     }
