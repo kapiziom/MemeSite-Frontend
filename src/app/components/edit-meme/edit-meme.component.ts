@@ -49,7 +49,6 @@ export class EditMemeComponent implements OnInit {
         if(this.meme['userId'] != this.userService.getUserId()){
           this.router.navigateByUrl('/forbidden'); 
         }
-        console.log(this.meme);
         this.memeService.editMeme.setValue({
           title : this.meme['title'],
           txt : this.meme['txt'],
@@ -58,6 +57,9 @@ export class EditMemeComponent implements OnInit {
         console.log(this.meme);
       },
       err =>{
+        if(err['error']['statusCode'] == 404){
+          this.router.navigateByUrl('/404');
+        }
         console.log(err);
       },
     );

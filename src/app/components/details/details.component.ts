@@ -44,12 +44,12 @@ export class DetailsComponent implements OnInit {
   getMeme(MemeID){
     this.memeService.GetMemeDetail(MemeID).subscribe(
       (res : any) =>{
-        if(res == null){
-          this.router.navigateByUrl('/404');
-        }
         this.memeDetails = res;
       },
       err =>{
+        if(err['error']['statusCode'] == 404){
+          this.router.navigateByUrl('/404');
+        }
         console.log(err);
       },
     );
