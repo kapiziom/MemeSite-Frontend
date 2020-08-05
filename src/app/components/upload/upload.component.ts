@@ -20,6 +20,8 @@ export class UploadComponent implements OnInit {
   selectedCategory : any;
 
   src: string;
+
+  clicked = false;
  
   constructor(public memeService : MemeService, private categoryService : CategoryService, private toastr : ToastrService) { }
  
@@ -48,10 +50,12 @@ export class UploadComponent implements OnInit {
           this.imageUrl = "assets/img/noimg.jpg"
           this.imageByte = null;
           this.toastr.success('New meme uploaded', 'success');
+          this.clicked = false;
        },
        err => {
           console.log(err);
           this.toastr.error('New meme didnt upload', 'not success');
+          this.clicked = false;
        }
      );
   }

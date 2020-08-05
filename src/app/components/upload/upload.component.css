@@ -27,3 +27,7 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+#uplButton:hover:enabled {
+    background-color: lightgreen;
+}

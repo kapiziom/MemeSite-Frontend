@@ -15,7 +15,7 @@ export class PaginatorComponent implements OnInit {
   config: any;
   nextPage: number = 1;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private router: Router) {
     this.config = {
       currentPage: 1,
       itemsPerPage: 2,

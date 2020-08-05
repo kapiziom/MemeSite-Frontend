@@ -29,7 +29,7 @@ export class VoteComponent implements OnInit {
     if(isVoted === true){
       this.voteService.ChangeVote(voteValue, memeId).subscribe(
         (res:any) => {
-          this.refreshRate(memeId);
+          this.memeDetails['rate'] = res['currentRate'];
           this.memeDetails['voteValue'] = voteValue;
           this.toastr.success('voted successful', 'success');
         },
@@ -43,7 +43,7 @@ export class VoteComponent implements OnInit {
     else {
       this.voteService.SendVote(voteValue, memeId).subscribe(
         (res:any) => {
-          this.refreshRate(memeId);
+          this.memeDetails['rate'] = res['currentRate'];
           this.memeDetails['voteValue'] = voteValue;
           this.memeDetails['isVoted'] = true;
           this.toastr.success('voted successful', 'success');

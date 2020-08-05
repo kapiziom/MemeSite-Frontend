@@ -33,7 +33,7 @@
         
     <div class="form-row">
         <div class="form-group col-md-8 offset-md-2" style="padding-top: 10px;">
-            <button type="submit" class="btn btn-lg btn-block" [disabled]="!memeService.addMeme.valid">Upload</button>
+            <button type="submit" id="uplButton" class="btn btn-lg btn-block" (click)="OnSubmit(); clicked = true;" [disabled]="!memeService.addMeme.valid || clicked">Upload</button>
         </div>
     </div>
   </form>

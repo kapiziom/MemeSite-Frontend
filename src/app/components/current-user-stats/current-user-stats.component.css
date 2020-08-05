@@ -31,23 +31,30 @@
     margin-left: 5px;
 }
 
+#ahref {
+    margin-left: 1%;
+}
+
 #settings {
     background-color: black;
+    margin-bottom: 1%;
     border-radius: 10px;
-    width: 100%;
+    width: 98%;
 }
 #settings:hover {
     background-color: gray;
+    cursor: pointer;
 }
 
 #favourites {
     background-color: black;
     margin-bottom: 1px;
     border-radius: 10px;
-    width: 100%;
+    width: 98%;
 }
 #favourites:hover {
     background-color: gray;
+    cursor: pointer;
 }
 
 #profileRefLink:hover {

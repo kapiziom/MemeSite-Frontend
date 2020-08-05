@@ -81,7 +81,7 @@
                                             DELETE
                                         </p>
                                         
-                                        <p *ngIf="userService.getUserName() == item.userName" class="comment-edit" (click)="OnEdit(i)">edit</p><br>
+                                        <p *ngIf="userService.getUserName() == item.userName && item.isArchived == false" class="comment-edit" (click)="OnEdit(i)">edit</p><br>
                                         <!--<p class="comment-other" (click)="OnReport()">Report</p>
                                          <p style="float: right; margin-right: 10px;"> - </p>
                                         <p class="comment-other" (click)="OnReply()">Reply</p> -->

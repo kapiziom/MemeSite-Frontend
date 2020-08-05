@@ -32,6 +32,7 @@ export class CommentService {
       txt: this.addComment.value.txt,
       memeId: memeId,
     };
+    console.log(body);
     return this.http.post(this.BaseURI +'/Comment', body);
   }
 

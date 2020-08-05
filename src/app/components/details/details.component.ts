@@ -125,7 +125,7 @@ export class DetailsComponent implements OnInit {
   OnSubmit(){
     this.commentService.postComment(this.MemeID).subscribe(
       (res:any) => {
-        console.log(res);
+        res['userName'] = this.userService.getUserName();
         this.commentService.addComment.reset();
         this.comments.splice(0, 0, res); 
         this.memeDetails['commentCount'] += 1;
